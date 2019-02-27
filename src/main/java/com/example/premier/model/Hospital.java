@@ -7,15 +7,26 @@ public class Hospital {
 
     private String name;
     private String address;
-    private Long   phoneNumber;
+    private String phoneNumber;
     private String email;
+    private boolean isEnabled;
 
-    public Hospital(String name, String address, Long phoneNumber, String email) {
+
+    public Hospital(String name, String address, String phoneNumber, String email) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
 
 
     public String getName() {
@@ -34,13 +45,6 @@ public class Hospital {
         this.address = address;
     }
 
-    public Long getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     public String getEmail() {
         return email;
@@ -48,6 +52,14 @@ public class Hospital {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 
 
