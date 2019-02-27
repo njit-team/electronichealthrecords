@@ -9,6 +9,7 @@ public class Hospital {
     private String address;
     private String phoneNumber;
     private String email;
+    private String password;
     private boolean isEnabled;
 
 
@@ -62,7 +63,13 @@ public class Hospital {
         isEnabled = enabled;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 
 
