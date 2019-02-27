@@ -11,4 +11,6 @@ public interface HospitalRepository extends MongoRepository<Hospital,String> {
 
     List<Hospital> findAll();
 
+    Hospital findByEmailIgnoreCase(String email);
+
 }
