@@ -6,5 +6,5 @@ import com.example.premier.model.ConfirmationToken;
 
 public interface ConfirmationTokenRepository extends MongoRepository<ConfirmationToken, String> {
 
-    ConfirmationToken findConfirmationTokenBy(String confirmationToken);
+    ConfirmationToken findByConfirmationToken(String confirmationToken);
 }

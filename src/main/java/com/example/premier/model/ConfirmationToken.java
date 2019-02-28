@@ -6,8 +6,10 @@ import java.util.*;
 
 @Document
 public class ConfirmationToken {
+
+
     @Id
-    private Long tokenID;
+    private String tokenID;
     private String confirmationToken;
     private Date createDate;
     private Hospital hospital;
@@ -19,13 +21,6 @@ public class ConfirmationToken {
         confirmationToken = UUID.randomUUID().toString();
     }
 
-    public Long getTokenID() {
-        return tokenID;
-    }
-
-    public void setTokenID(Long tokenID) {
-        this.tokenID = tokenID;
-    }
 
     public String getConfirmationToken() {
         return confirmationToken;
@@ -37,6 +32,13 @@ public class ConfirmationToken {
 
     public Date getCreateDate() {
         return createDate;
+    }
+    public String getTokenID() {
+        return tokenID;
+    }
+
+    public void setTokenID(String tokenID) {
+        this.tokenID = tokenID;
     }
 
     public void setCreateDate(Date createDate) {

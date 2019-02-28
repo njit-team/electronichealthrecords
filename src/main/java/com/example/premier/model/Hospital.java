@@ -1,10 +1,15 @@
 package com.example.premier.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Hospital {
 
+
+
+    @Id
+    private String hospitalID;
     private String name;
     private String address;
     private String phoneNumber;
@@ -29,6 +34,9 @@ public class Hospital {
     }
 
 
+    public String getHospitalID() {
+        return hospitalID;
+    }
 
     public String getName() {
         return name;

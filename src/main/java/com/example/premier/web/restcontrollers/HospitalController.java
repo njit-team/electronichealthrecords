@@ -37,9 +37,9 @@ public class HospitalController {
         if(existingHospital != null){
             System.out.println("User Already exists");
         }
-          this.hospitalservice.createNewHospital(hospital);
+         Hospital newHospital =  this.hospitalservice.createNewHospital(hospital);
 
-            ConfirmationToken  confirmationToken = new ConfirmationToken(hospital);
+            ConfirmationToken  confirmationToken = new ConfirmationToken(newHospital);
 
             confirmationTokenRepository.save(confirmationToken);
 
@@ -60,17 +60,19 @@ public class HospitalController {
 
     }
     @PostMapping(value = "/confirm-account")
-    public Hospital confirmHospitalAccount(Hospital newHospital,@RequestParam("token") String confirmToken){
-        ConfirmationToken token = this.confirmationTokenRepository.findConfirmationTokenBy(confirmToken);
+    public ConfirmationToken confirmHospitalAccount(@RequestParam("token") String confirmToken){
+        ConfirmationToken token = this.confirmationTokenRepository.findByConfirmationToken(confirmToken);
+        System.out.println(token);
         if(token != null){
-            Hospital hospital = this.hospitalRepository.findByEmailIgnoreCase(token.getHospital().getEmail());
-            hospital.setEnabled(true);
-            hospitalRepository.save(hospital);
+            Hospital newHospital = this.hospitalRepository.findByEmailIgnoreCase(token.getHospital().getEmail());
+             System.out.println(newHospital);
+            newHospital.setEnabled(true);
+            hospitalRepository.save(newHospital);
             System.out.print("Account Verified");
         }else{
             System.out.println("link is broken or invalid");
         }
-    return newHospital;
+    return token;
 
     }
 
