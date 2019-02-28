@@ -1,8 +1,12 @@
 package com.example.premier.model;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.*;
 
-
+@Document
 public class ConfirmationToken {
+    @Id
     private Long tokenID;
     private String confirmationToken;
     private Date createDate;
