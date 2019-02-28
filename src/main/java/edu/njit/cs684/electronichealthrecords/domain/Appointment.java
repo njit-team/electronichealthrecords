@@ -9,17 +9,21 @@ import java.time.ZonedDateTime;
 public class Appointment {
 
     @Id
+    private String appointmentId;
     private String patientId;
-    @Id
     private String doctorId;
     private ZonedDateTime appointmentDateTime;
     private String appointmentReason;
 
-    public Appointment(String patientId, String doctorId, ZonedDateTime appointmentDateTime, String appointmentReason) {
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.appointmentDateTime = appointmentDateTime;
-        this.appointmentReason = appointmentReason;
+    public Appointment() {
+    }
+
+    public String getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(String appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public String getPatientId() {
