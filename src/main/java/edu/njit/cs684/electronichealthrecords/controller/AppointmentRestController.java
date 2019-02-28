@@ -3,10 +3,7 @@ package edu.njit.cs684.electronichealthrecords.controller;
 import edu.njit.cs684.electronichealthrecords.domain.Appointment;
 import edu.njit.cs684.electronichealthrecords.services.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("appointment")
@@ -22,6 +19,14 @@ public class AppointmentRestController {
         bookedAppointment = appointmentService.bookAppointment(appointment.getPatientId(), appointment.getDoctorId(),
                 appointment.getAppointmentDateTime(), appointment.getAppointmentReason());
         return bookedAppointment;
+    }
+
+    @RequestMapping(value = "/view/{appointmentId}", method = RequestMethod.GET)
+    public Appointment viewAppointment(@PathVariable String appointmentId) {
+
+        Appointment appointment;
+        appointment = appointmentService.viewAppointment(appointmentId);
+        return appointment;
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
@@ -23,5 +24,13 @@ public class AppointmentService {
         Appointment savedAppointment = appointmentRepository.save(appointment);
 
         return savedAppointment;
+    }
+
+    public Appointment viewAppointment(String appointmentId) {
+
+        Appointment appointment;
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        appointment = optionalAppointment.get();
+        return appointment;
     }
 }
