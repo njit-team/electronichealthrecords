@@ -1,17 +1,8 @@
 language: java
 jdk:
   - openjdk11
-addons:
-  sonarcloud:
-    organization: sulekhadahiya-github
-    token:
-      secure: $SONAR_TOKEN
 script:
   - "./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
-  - "./mvnw org.jacoco:jacoco-maven-plugin:prepare-agent install -DskipTests=true sonar:sonar"
 notifications:
   slack:
     secure: v8LmDCldbvyoMvKgtvhVykHhUJXcVEBRU1uIoN2QLQ3cviY9Qdtv5+MEuXmDLlmqoiykr9AEGXU6V7KH5CSZhJt1eI8F7lJBfKC/RsMcMvnoIBlawVQMjVTsjw80FOs8wt+oOd00YKJd3LicikQqxsOP+++0vpNACwcNvqXTbGVyjgcVAmD3ptHTNZT0oVaMOOVW6Xfen+YY17cSO/IEuqDrMGMb9ToWeb8dr8mTPu64FwNz9E/hOzkBcF0/AU5lpicECJOaEmofRVMsNmZaPzLYG+4fO5LBHIg3O8gt2lN0/OARenffPrFPFPyhAUzFCLPUkIJw4WNWQbE6nZyvH9llgFfW0RlWqfrw7cszTLYfCX75f7XxlCLkuDTL/2x9Pu3efRYOdNXUhaQIZ22uWWIwO8lpP1ufZCBvgUxsxN8JHCk60ZMXlOtN+NeNcSXH++Uqdc9FJlsc3mkiBHKNjPGlKbaDRgte/SvU5+Ze/O8nSdJDGzRcM99otRAwiBktthMzjKwTsugMRH/8nNz7CVoKOTsQQBBTaf2MhJfxzSvCvsUruRtbXGOrmHzmm8Bh4cr5OXRVY6ETSooB2oZEysArIlw7rmyAez3CGnu2gr2lz3EyZp9UHuWsBbbAcZBBcBmpG2MHOlx45bDMaADiBRZpCMsGdvlvMaESwcM+9SI=
-env:
-  global:
-    secure: qAM15Hu6gApjNwqEHRPQhOby/1hgmAJ4CSK6zD0iComdITrXbxojn4DgZbRBPkEQcoy/A//1C43Yvz14TxyUUpd0dRonfq0D3j47nuagfSapBLqemd2gUKTzBxYyyO0h/fTFec6V7eaBaPo6kJ4W76r9xd2NJCtX4VsyuOTtpfyk9b2qh7z8Ge9yX1zbQmsIoJmXJiFgLeknwgujJHqHei/15sw/Y5EztnN4VivdRU9tSZdgvYyAaFlgeagRzrOPMcGWaANlUYcgS/4g1JceNcmyamg8OClZA4nWWHYBDC/3Yfw/63BCJBlj85aKq4y4JpKOBHfC4YZKuTZs2dbC/i6GCm4cWU7GACVat1gWrP+WyFFXqevoJrBSS9N1FvzeKrSBp42jqPvYcTR9XcSHRcRw90aoyYTcKbIbC29bmdfJ48BRiuCNkQTWDy5hgMQ7IXgOaq8tiksEfA6EIvDO1BgeD2I+HeM+d/PGd3tKUpFDozlEtax3beUFsevQoZ//BbTFmiSeQM7FLY3eA5FSLfBTXMQmvHFIRujHayfnNDKo7ZEsK5qz2xcsaYO2/L04S4X45Q69uStvqyYQcd8y+za93T6aRwAKLL5hOjVUy3u7Brq7gry849AB+IMIMI/DBEu1/wmlHEqxPEG11PRaHGR5oXiPZCvwaLbNuPLKZqQ=
