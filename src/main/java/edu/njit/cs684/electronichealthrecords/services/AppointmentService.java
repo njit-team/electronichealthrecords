@@ -30,7 +30,7 @@ public class AppointmentService {
 
         Appointment appointment;
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
-        appointment = optionalAppointment.get();
+        appointment = optionalAppointment.orElse(null);
         return appointment;
     }
 }
