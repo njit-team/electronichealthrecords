@@ -1,0 +1,5 @@
+language: java
+jdk:
+  - openjdk11
+
+  ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
