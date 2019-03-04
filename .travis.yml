@@ -1,6 +1,9 @@
 language: java
 jdk:
   - openjdk11
-
 script:
-  - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - "./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
+
+notifications:
+  slack:
+    secure: i4r1hgPgXfv4WJNheHhJyU/QVSlM1fsyJDraW8e+0/58I94cxdXlofsqcyAPi7kje34ySEAOCh5bGjBFczz/zFxf7ghhFcpwZP9DxrFqnZhHb/Io84HWYYlIcpn0JDzbRNDqXgEUtjap5PTVXF5+4o9WyBYdxjhCWqdiRczGcDkapR5QlSBOV6vVuTBeOKLNqb6WK5kNQ8VsL9GU5ECkhgYlAhSY6QaT2f4m8IlHMgng6O2qI4XLEBDb+cJeEwaWu3UjhsfwLusQAyVWvnJQI0EI7bHw35LEnmwDK0F1CF4t6SBvPvNdzB2KNN9tKKWn28ob4hvoYRTNhk98Qh8yeytlEd83dRW8jSDxDF1KDq5e0/bt68AN8fIDbUp6+grRztfZ79a7TxSGnbRBejb1mh84nUp1jk3QrsqinsLjsOQD+O8KQsgBYBpYJm2/bv8ZRvF/Wh1k2ctbOhw4Z27hYknqRt7bGEsYkFs08H4AaoOaJHrtFSPsu4Ptog+WNIH98wHts4gHCypl3Sr/EhqLYR9z2ASP6bu6BMZ5CQ1NWIql2ydvmQioHKUcUpJWHYiPksQaOuUq8EirbFTzP5npBELpxPWS51KLr/ozXck6xhcBtFON7/FaaMb7tB92Bt50f23s44XjpNZZJhIfBltRdffoXkj8e9PJrtqbVrqXtiI=
