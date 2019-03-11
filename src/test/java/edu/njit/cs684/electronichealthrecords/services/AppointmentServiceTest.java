@@ -2,7 +2,6 @@ package edu.njit.cs684.electronichealthrecords.services;
 
 import edu.njit.cs684.electronichealthrecords.domain.Appointment;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +30,5 @@ public class AppointmentServiceTest {
         Assert.assertEquals("book Appointment method failed", doctorId, resultAppointment.getDoctorId());
         Assert.assertEquals("book Appointment method failed", appointmentDateTime.toString(), resultAppointment.getAppointmentDateTime());
         Assert.assertEquals("book Appointment method failed", appointmentReason, resultAppointment.getAppointmentReason());
-    }
-
-    @Test
-    @Ignore
-    public void viewAppointment() {
-
     }
 }

@@ -13,9 +13,6 @@ public class Appointment {
     private String appointmentDateTime;
     private String appointmentReason;
 
-    public Appointment() {
-    }
-
     public String getAppointmentId() {
         return appointmentId;
     }
