@@ -69,8 +69,8 @@ public class AppointmentTest {
     @Test
     public void setAppointmentDateTime() {
         ZonedDateTime dateTime = ZonedDateTime.now();
-        appointment.setAppointmentDateTime(dateTime);
-        ZonedDateTime result = appointment.getAppointmentDateTime();
+        appointment.setAppointmentDateTime(dateTime.toString());
+        ZonedDateTime result = ZonedDateTime.parse(appointment.getAppointmentDateTime());
         Assert.assertEquals("getAppointmentDateTime method failed", dateTime, result);
     }
 

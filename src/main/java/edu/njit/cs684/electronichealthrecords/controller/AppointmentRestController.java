@@ -5,6 +5,8 @@ import edu.njit.cs684.electronichealthrecords.services.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
+
 @RestController
 @RequestMapping("appointment")
 public class AppointmentRestController {
@@ -17,7 +19,7 @@ public class AppointmentRestController {
 
         Appointment bookedAppointment;
         bookedAppointment = appointmentService.bookAppointment(appointment.getPatientId(), appointment.getDoctorId(),
-                appointment.getAppointmentDateTime(), appointment.getAppointmentReason());
+                ZonedDateTime.parse(appointment.getAppointmentDateTime()), appointment.getAppointmentReason());
         return bookedAppointment;
     }
 

@@ -3,8 +3,6 @@ package edu.njit.cs684.electronichealthrecords.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.ZonedDateTime;
-
 @Document
 public class Appointment {
 
@@ -12,7 +10,7 @@ public class Appointment {
     private String appointmentId;
     private String patientId;
     private String doctorId;
-    private ZonedDateTime appointmentDateTime;
+    private String appointmentDateTime;
     private String appointmentReason;
 
     public Appointment() {
@@ -42,11 +40,11 @@ public class Appointment {
         this.doctorId = doctorId;
     }
 
-    public ZonedDateTime getAppointmentDateTime() {
+    public String getAppointmentDateTime() {
         return appointmentDateTime;
     }
 
-    public void setAppointmentDateTime(ZonedDateTime appointmentDateTime) {
+    public void setAppointmentDateTime(String appointmentDateTime) {
         this.appointmentDateTime = appointmentDateTime;
     }
 

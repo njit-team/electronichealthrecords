@@ -19,7 +19,7 @@ public class AppointmentService {
         Appointment appointment = new Appointment();
         appointment.setPatientId(patientId);
         appointment.setDoctorId(doctorId);
-        appointment.setAppointmentDateTime(appointmentDateTime);
+        appointment.setAppointmentDateTime(appointmentDateTime.toString());
         appointment.setAppointmentReason(appointmentReason);
         Appointment savedAppointment = appointmentRepository.save(appointment);
 
