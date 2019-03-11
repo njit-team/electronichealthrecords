@@ -2,6 +2,7 @@ package edu.njit.cs684.electronichealthrecords.services;
 
 import edu.njit.cs684.electronichealthrecords.domain.Appointment;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class AppointmentServiceTest {
     }
 
     @Test
+    @Ignore
     public void viewAppointment() {
 
     }
