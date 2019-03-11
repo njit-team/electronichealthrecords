@@ -27,7 +27,7 @@ public class AppointmentServiceTest {
         Appointment resultAppointment = appointmentService.bookAppointment(patientId,
                 doctorId, appointmentDateTime, appointmentReason);
         Assert.assertEquals("patientId Appointment method failed", patientId, resultAppointment.getPatientId());
-        Assert.assertEquals("book Appointment method failed", doctorId, resultAppointment.getDoctorId());
+        Assert.assertEquals("doctorId Appointment method failed", doctorId, resultAppointment.getDoctorId());
         Assert.assertEquals("book Appointment method failed", appointmentDateTime.toString(), resultAppointment.getAppointmentDateTime());
         Assert.assertEquals("book Appointment method failed", appointmentReason, resultAppointment.getAppointmentReason());
     }
