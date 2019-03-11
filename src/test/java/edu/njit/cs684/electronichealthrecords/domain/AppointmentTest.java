@@ -84,6 +84,6 @@ public class AppointmentTest {
         String reason = "High Fever";
         appointment.setAppointmentReason(reason);
         String result = appointment.getAppointmentReason();
-        Assert.assertEquals("setAppointmentReason method failed", reason, result);
+        Assert.assertEquals("SetAppointmentReason method failed", reason, result);
     }
 }
