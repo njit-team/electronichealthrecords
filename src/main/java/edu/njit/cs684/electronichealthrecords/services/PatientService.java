@@ -1,8 +1,7 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
-
-import com.example.premier.model.Patient;
-import com.example.premier.repository.PatientRepository;
+import edu.njit.cs684.electronichealthrecords.domain.Patient;
+import edu.njit.cs684.electronichealthrecords.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

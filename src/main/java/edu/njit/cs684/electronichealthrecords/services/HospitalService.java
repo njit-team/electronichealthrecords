@@ -1,8 +1,10 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
 
-import com.example.premier.model.Hospital;
-import com.example.premier.repository.HospitalRepository;
+
+
+import edu.njit.cs684.electronichealthrecords.domain.Hospital;
+import edu.njit.cs684.electronichealthrecords.repository.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
