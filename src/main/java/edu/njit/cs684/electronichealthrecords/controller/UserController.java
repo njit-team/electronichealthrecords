@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author sulekha
- * njit_cs_673_Weather_Web_App, 2018
+ * njit_cs_684_electronichealthrecords, 2019
  */
 @RestController
 @RequestMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE,

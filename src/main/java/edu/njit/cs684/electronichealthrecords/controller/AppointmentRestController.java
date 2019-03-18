@@ -14,7 +14,7 @@ public class AppointmentRestController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @PostMapping(value = "/book")
+    @PostMapping(value = "/book-appointment")
     public Appointment bookAppointment(@RequestBody Appointment appointment){
 
         Appointment bookedAppointment;
@@ -23,11 +23,26 @@ public class AppointmentRestController {
         return bookedAppointment;
     }
 
-    @GetMapping(value = "/view/{appointmentId}")
+    @GetMapping(value = "/view-appointment/{appointmentId}")
     public Appointment viewAppointment(@PathVariable String appointmentId) {
 
         Appointment appointment;
         appointment = appointmentService.viewAppointment(appointmentId);
+        return appointment;
+    }
+
+    @PostMapping(value = "/update-appointment/{appointmentId}")
+    public Appointment updateAppointment(@PathVariable String appointmentId, ZonedDateTime appointmentNewDateTime) {
+        Appointment appointment;
+        appointment = appointmentService.updateAppointment(appointmentId, appointmentNewDateTime);
+        return appointment;
+
+    }
+
+    @DeleteMapping(value = "/delete-appointment/{appointmentId}")
+    public Appointment deleteAppointment(@PathVariable String appointmentId) {
+        Appointment appointment;
+        appointment = appointmentService.deleteAppointment(appointmentId);
         return appointment;
     }
 

@@ -41,9 +41,19 @@ public class AppointmentService {
 
     }
 
-//    public Appointment updateAppointment(String patientId, ZonedDateTime appointmentNewDateTime){
-//        Appointment appointment;
-//
-//        return  appointment;
-//    }
+    public Appointment updateAppointment(String appointmentId, ZonedDateTime appointmentNewDateTime) {
+        Appointment appointment;
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        appointment = optionalAppointment.orElseThrow(() -> new RuntimeException("Appointment does not exist."));
+        appointment.setAppointmentDateTime(appointmentNewDateTime.toString());
+        return appointment;
+    }
+
+    public Appointment deleteAppointment(String appointmentId) {
+        Appointment appointment;
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        appointment = optionalAppointment.orElseThrow(() -> new RuntimeException("Appointment does not exist."));
+        appointmentRepository.deleteById(appointmentId);
+        return appointment;
+    }
 }
