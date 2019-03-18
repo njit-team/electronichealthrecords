@@ -1,5 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.domain;
 
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import org.junit.*;
 
 import java.time.ZonedDateTime;

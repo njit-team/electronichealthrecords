@@ -1,6 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
-import edu.njit.cs684.electronichealthrecords.domain.Appointment;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +26,8 @@ public class AppointmentServiceTest {
         String appointmentReason = "High Fever";
         Appointment resultAppointment = appointmentService.bookAppointment(patientId,
                 doctorId, appointmentDateTime, appointmentReason);
-        Assert.assertEquals("book Appointment method failed", patientId, resultAppointment.getPatientId());
-        Assert.assertEquals("book Appointment method failed", doctorId, resultAppointment.getDoctorId());
+        Assert.assertEquals("patientId Appointment method failed", patientId, resultAppointment.getPatientId());
+        Assert.assertEquals("doctorId Appointment method failed", doctorId, resultAppointment.getDoctorId());
         Assert.assertEquals("book Appointment method failed", appointmentDateTime.toString(), resultAppointment.getAppointmentDateTime());
         Assert.assertEquals("book Appointment method failed", appointmentReason, resultAppointment.getAppointmentReason());
     }
