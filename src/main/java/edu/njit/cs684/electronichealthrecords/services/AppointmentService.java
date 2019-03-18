@@ -22,9 +22,7 @@ public class AppointmentService {
         appointment.setDoctorId(doctorId);
         appointment.setAppointmentDateTime(appointmentDateTime.toString());
         appointment.setAppointmentReason(appointmentReason);
-        Appointment savedAppointment = appointmentRepository.save(appointment);
-
-        return savedAppointment;
+        return appointmentRepository.save(appointment);
     }
 
     public Appointment viewAppointment(String appointmentId) {

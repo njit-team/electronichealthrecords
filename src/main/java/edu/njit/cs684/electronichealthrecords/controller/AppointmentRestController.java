@@ -14,7 +14,7 @@ public class AppointmentRestController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @RequestMapping(value = "/book", method = RequestMethod.POST)
+    @PostMapping(value = "/book")
     public Appointment bookAppointment(@RequestBody Appointment appointment){
 
         Appointment bookedAppointment;
@@ -23,7 +23,7 @@ public class AppointmentRestController {
         return bookedAppointment;
     }
 
-    @RequestMapping(value = "/view/{appointmentId}", method = RequestMethod.GET)
+    @GetMapping(value = "/view/{appointmentId}")
     public Appointment viewAppointment(@PathVariable String appointmentId) {
 
         Appointment appointment;

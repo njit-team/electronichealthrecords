@@ -31,9 +31,4 @@ public class AppointmentServiceTest {
         Assert.assertEquals("book Appointment method failed", appointmentDateTime.toString(), resultAppointment.getAppointmentDateTime());
         Assert.assertEquals("book Appointment method failed", appointmentReason, resultAppointment.getAppointmentReason());
     }
-
-    @Test
-    public void viewAppointment() {
-
-    }
 }
