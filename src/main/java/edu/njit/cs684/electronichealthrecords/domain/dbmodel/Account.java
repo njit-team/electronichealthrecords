@@ -1,19 +1,35 @@
-package edu.njit.cs684.electronichealthrecords.domain;
+package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
+
+import org.springframework.data.mongodb.core.index.Indexed;
 
 public class Account {
 
     private Name name;
-    private String address;
+    private Address address;
     private String dateOfBirth;
     private Long phoneNumber;
     private String gender;
+    @Indexed(unique = true)
+    private String email;
 
-    public Account(Name name, String address, String dateOfBirth, Long phoneNumber, String gender) {
+    public Account() {
+    }
+
+    public Account(Name name, Address address, String dateOfBirth, Long phoneNumber, String gender, String email) {
         this.name = name;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Name getName() {
@@ -24,11 +40,11 @@ public class Account {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

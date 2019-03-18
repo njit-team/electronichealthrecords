@@ -1,6 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
-import edu.njit.cs684.electronichealthrecords.domain.Appointment;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

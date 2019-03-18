@@ -1,4 +1,4 @@
-package edu.njit.cs684.electronichealthrecords.domain;
+package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

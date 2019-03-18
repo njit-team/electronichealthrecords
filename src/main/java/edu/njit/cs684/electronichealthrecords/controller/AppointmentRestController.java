@@ -1,6 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.controller;
 
-import edu.njit.cs684.electronichealthrecords.domain.Appointment;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import edu.njit.cs684.electronichealthrecords.services.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

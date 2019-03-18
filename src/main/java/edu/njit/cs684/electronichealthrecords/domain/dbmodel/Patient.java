@@ -1,10 +1,7 @@
-package edu.njit.cs684.electronichealthrecords.domain;
+package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-
 
 @Document
 public class Patient {
@@ -14,9 +11,6 @@ public class Patient {
     private Account account;
 
     public Patient()  {
-
-
-
     }
 
     public Account getAccount() {
@@ -27,18 +21,6 @@ public class Patient {
         this.account = account;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public String getId() {
         return id;
     }
@@ -46,10 +28,6 @@ public class Patient {
     public void setId(String id) {
         this.id = id;
     }
-
-
-
-
 }
 
 
