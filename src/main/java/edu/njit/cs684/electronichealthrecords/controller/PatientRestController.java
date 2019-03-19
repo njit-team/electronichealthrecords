@@ -14,11 +14,9 @@ public class PatientRestController {
     @Autowired
     PatientService patientService;
 
-    @GetMapping(value = "/get-patient")
+    @GetMapping(value = "/get-all-patients")
     public List<Patient> getPatient(){
-
         List<Patient> returnedPatient = this.patientService.getPatientInfo();
-
         return returnedPatient;
 
     }
