@@ -1,11 +1,15 @@
 package edu.njit.cs684.electronichealthrecords.domain;
 
 
+import javax.validation.constraints.NotNull;
+
 public class Name {
 
-
+    @NotNull(message = "please enter your firstname")
     public String firstName;
+    @NotNull(message = "please enter your lastname")
     public String lastName;
+    @NotNull(message = "please enter your middlename")
     public String middleName;
 
     public Name(String firstName, String lastName, String middleName) {

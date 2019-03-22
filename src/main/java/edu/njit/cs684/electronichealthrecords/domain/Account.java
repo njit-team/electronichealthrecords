@@ -1,19 +1,34 @@
 package edu.njit.cs684.electronichealthrecords.domain;
 
-public class Account {
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
+public class Account {
+    @Valid
     private Name name;
+    @NotNull(message = "please enter your address")
     private String address;
+    @NotNull(message="please enter your date of birth")
     private String dateOfBirth;
+    @NotNull(message = "please enter your phone number ")
     private Long phoneNumber;
+    @NotNull(message = "please enter your gender")
     private String gender;
 
-    public Account(Name name, String address, String dateOfBirth, Long phoneNumber, String gender) {
+
+    @Email
+    @NotNull(message = "please enter your email")
+    private String email;
+
+    public Account(Name name, String address, String dateOfBirth, Long phoneNumber, String gender,String Email) {
         this.name = name;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.email = email;
+
     }
 
     public Name getName() {
@@ -55,6 +70,9 @@ public class Account {
     public void setGender(String gender) {
         this.gender = gender;
     }
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
 
 
 
