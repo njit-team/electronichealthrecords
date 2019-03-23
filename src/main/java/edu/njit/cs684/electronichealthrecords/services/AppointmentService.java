@@ -1,6 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
-import edu.njit.cs684.electronichealthrecords.domain.Appointment;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import edu.njit.cs684.electronichealthrecords.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +14,7 @@ public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
+
     public Appointment bookAppointment(String patientId, String doctorId,
                                        ZonedDateTime appointmentDateTime, String appointmentReason){
         Appointment appointment = new Appointment();
@@ -21,9 +22,7 @@ public class AppointmentService {
         appointment.setDoctorId(doctorId);
         appointment.setAppointmentDateTime(appointmentDateTime.toString());
         appointment.setAppointmentReason(appointmentReason);
-        Appointment savedAppointment = appointmentRepository.save(appointment);
-
-        return savedAppointment;
+        return appointmentRepository.save(appointment);
     }
 
     public Appointment viewAppointment(String appointmentId) {
@@ -31,6 +30,30 @@ public class AppointmentService {
         Appointment appointment;
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
         appointment = optionalAppointment.orElse(null);
+        return appointment;
+    }
+
+    public Appointment findAppointmentByEmail(String email) {
+        Appointment appointment;
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(email);
+        appointment = optionalAppointment.orElse(null);
+        return appointment;
+
+    }
+
+    public Appointment updateAppointment(String appointmentId, ZonedDateTime appointmentNewDateTime) {
+        Appointment appointment;
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        appointment = optionalAppointment.orElseThrow(() -> new RuntimeException("Appointment does not exist."));
+        appointment.setAppointmentDateTime(appointmentNewDateTime.toString());
+        return appointment;
+    }
+
+    public Appointment deleteAppointment(String appointmentId) {
+        Appointment appointment;
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        appointment = optionalAppointment.orElseThrow(() -> new RuntimeException("Appointment does not exist."));
+        appointmentRepository.deleteById(appointmentId);
         return appointment;
     }
 }

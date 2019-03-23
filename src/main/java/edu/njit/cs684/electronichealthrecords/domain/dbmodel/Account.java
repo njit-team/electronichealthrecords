@@ -1,4 +1,6 @@
-package edu.njit.cs684.electronichealthrecords.domain;
+package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
+
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -7,21 +9,30 @@ import javax.validation.constraints.NotNull;
 public class Account {
     @Valid
     private Name name;
+
     @NotNull(message = "please enter your address")
-    private String address;
+    private Address address;
     @NotNull(message="please enter your date of birth")
+
+
     private String dateOfBirth;
     @NotNull(message = "please enter your phone number ")
     private Long phoneNumber;
     @NotNull(message = "please enter your gender")
     private String gender;
-
-
+    @Indexed(unique = true)
     @Email
     @NotNull(message = "please enter your email")
     private String email;
 
-    public Account(Name name, String address, String dateOfBirth, Long phoneNumber, String gender,String Email) {
+    public Account() {
+    }
+
+
+
+
+    public Account(Name name, Address address, String dateOfBirth, Long phoneNumber, String gender,String Email) {
+
         this.name = name;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
@@ -31,6 +42,7 @@ public class Account {
 
     }
 
+
     public Name getName() {
         return name;
     }
@@ -39,11 +51,11 @@ public class Account {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

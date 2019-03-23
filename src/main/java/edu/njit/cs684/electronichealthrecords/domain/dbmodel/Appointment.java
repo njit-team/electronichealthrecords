@@ -1,4 +1,4 @@
-package edu.njit.cs684.electronichealthrecords.domain;
+package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,9 +12,6 @@ public class Appointment {
     private String doctorId;
     private String appointmentDateTime;
     private String appointmentReason;
-
-    public Appointment() {
-    }
 
     public String getAppointmentId() {
         return appointmentId;

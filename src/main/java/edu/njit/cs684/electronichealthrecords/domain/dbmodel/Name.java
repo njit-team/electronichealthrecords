@@ -1,4 +1,4 @@
-package edu.njit.cs684.electronichealthrecords.domain;
+package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
 
 import javax.validation.constraints.NotNull;

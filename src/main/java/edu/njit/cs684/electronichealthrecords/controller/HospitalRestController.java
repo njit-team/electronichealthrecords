@@ -1,6 +1,7 @@
 package edu.njit.cs684.electronichealthrecords.controller;
 
-import edu.njit.cs684.electronichealthrecords.domain.*;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.ConfirmationToken;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Hospital;
 import edu.njit.cs684.electronichealthrecords.repository.ConfirmationTokenRepository;
 import edu.njit.cs684.electronichealthrecords.repository.HospitalRepository;
 import edu.njit.cs684.electronichealthrecords.services.EmailSenderService;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
 
 @RestController
 
@@ -35,7 +36,7 @@ public class HospitalRestController {
         }
         Hospital newHospital =  this.hospitalservice.createNewHospital(hospital);
 
-        ConfirmationToken  confirmationToken = new ConfirmationToken(newHospital);
+        ConfirmationToken confirmationToken = new ConfirmationToken(newHospital);
 
         confirmationTokenRepository.save(confirmationToken);
 
