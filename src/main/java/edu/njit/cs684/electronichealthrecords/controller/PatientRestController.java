@@ -15,44 +15,44 @@ public class PatientRestController {
     @Autowired
     PatientService patientService;
 
-    @GetMapping(value = "/get-all-patients")
+    @GetMapping(value = "/get/all")
     public List<Patient> getPatient(){
         List<Patient> returnedPatient = this.patientService.getPatientInfo();
         return returnedPatient;
 
     }
 
-    @PostMapping(value = "/create-patient")
+    @PostMapping(value = "/create")
     public Patient createPatient(@RequestBody @Validated Patient patient) {
         Patient savedPatient = this.patientService.createPatient(patient);
         return savedPatient;
     }
 
-    @GetMapping(value = "/find-patient/{patientId}")
+    @GetMapping(value = "/find/{patientId}")
     public Patient findPatientById(@PathVariable @Validated String patientId) {
         Patient patient = patientService.findPatientById(patientId);
         return patient;
     }
 
-    @GetMapping(value = "/view-patient-medical-history/{patientId}")
+    @GetMapping(value = "/medical/history/{patientId}")
     public Patient viewPatientMedicalHistory(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewPatientMedicalHistory(patientId);
         return patient;
     }
 
-    @GetMapping(value = "/view-patient-test-result/{patientId}")
+    @GetMapping(value = "/test/result/{patientId}")
     public Patient viewPatientTestResult(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewPatientTestResult(patientId);
         return patient;
     }
 
-    @GetMapping(value = "/view-patient-prescription/{patientId}")
+    @GetMapping(value = "/prescription/{patientId}")
     public Patient viewPatientPrescription(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewPatientPrescription(patientId);
         return patient;
     }
 
-    @GetMapping(value = "/view-comments-on-patient/{patientId}")
+    @GetMapping(value = "/comments/{patientId}")
     public Patient viewCommentsOnPatient(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewCommentsOnPatient(patientId);
         return patient;
