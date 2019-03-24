@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,7 +32,7 @@ public class UserController {
 
     @PostMapping(value = "/sign-up", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public UserRest signUp(@RequestBody UserRest userRest) {
+    public UserRest signUp(@RequestBody @Validated UserRest userRest) {
         User user = userRest.userRestToUser();
         User savedUser = userService.signUp(user);
         return UserRest.userToUserRest(savedUser);

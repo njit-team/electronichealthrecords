@@ -7,6 +7,7 @@ package edu.njit.cs684.electronichealthrecords.domain.restmoel;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.Role;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.User;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,11 @@ import java.util.List;
  */
 public class UserRest {
 
+    @NotNull(message = "username is not sent in request")
     private String username;
+    @NotNull(message = "password is not sent in request")
     private String password;
+    @NotNull(message = "user role is not sent in request")
     private List<String> roles;
 
     public UserRest() {

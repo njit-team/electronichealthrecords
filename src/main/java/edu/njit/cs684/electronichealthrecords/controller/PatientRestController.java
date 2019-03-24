@@ -3,6 +3,7 @@ package edu.njit.cs684.electronichealthrecords.controller;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
 import edu.njit.cs684.electronichealthrecords.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,37 +23,37 @@ public class PatientRestController {
     }
 
     @PostMapping(value = "/create-patient")
-    public Patient createPatient(@RequestBody Patient patient) {
+    public Patient createPatient(@RequestBody @Validated Patient patient) {
         Patient savedPatient = this.patientService.createPatient(patient);
         return savedPatient;
     }
 
     @GetMapping(value = "/find-patient/{patientId}")
-    public Patient findPatientById(@PathVariable String patientId) {
+    public Patient findPatientById(@PathVariable @Validated String patientId) {
         Patient patient = patientService.findPatientById(patientId);
         return patient;
     }
 
     @GetMapping(value = "/view-patient-medical-history/{patientId}")
-    public Patient viewPatientMedicalHistory(@RequestBody String patientId) {
+    public Patient viewPatientMedicalHistory(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewPatientMedicalHistory(patientId);
         return patient;
     }
 
     @GetMapping(value = "/view-patient-test-result/{patientId}")
-    public Patient viewPatientTestResult(@RequestBody String patientId) {
+    public Patient viewPatientTestResult(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewPatientTestResult(patientId);
         return patient;
     }
 
     @GetMapping(value = "/view-patient-prescription/{patientId}")
-    public Patient viewPatientPrescription(@RequestBody String patientId) {
+    public Patient viewPatientPrescription(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewPatientPrescription(patientId);
         return patient;
     }
 
     @GetMapping(value = "/view-comments-on-patient/{patientId}")
-    public Patient viewCommentsOnPatient(@RequestBody String patientId) {
+    public Patient viewCommentsOnPatient(@RequestBody @Validated String patientId) {
         Patient patient = patientService.viewCommentsOnPatient(patientId);
         return patient;
     }

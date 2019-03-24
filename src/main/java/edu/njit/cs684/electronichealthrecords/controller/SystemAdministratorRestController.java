@@ -9,10 +9,10 @@ import edu.njit.cs684.electronichealthrecords.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 
@@ -40,7 +40,7 @@ public class SystemAdministratorRestController {
 
     @PostMapping(value = "/registerStaff")
     public @ResponseBody
-    Staff createStaff(@RequestBody @Valid Staff staff) throws Exception {
+    Staff createStaff(@RequestBody @Validated Staff staff) throws Exception {
         try {
             Staff savedStaff = this.staffService.createStaff(staff);
             return savedStaff;

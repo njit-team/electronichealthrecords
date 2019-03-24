@@ -8,6 +8,7 @@ import edu.njit.cs684.electronichealthrecords.services.EmailSenderService;
 import edu.njit.cs684.electronichealthrecords.services.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class HospitalRestController {
 
 
     @PostMapping(value = "/register")
-    public Hospital createHospital(@RequestBody Hospital hospital){
+    public Hospital createHospital(@RequestBody @Validated Hospital hospital) {
         Hospital existingHospital = this.hospitalRepository.findByEmailIgnoreCase(hospital.getEmail());
         if(existingHospital != null){
             System.out.println("User Already exists");
@@ -57,7 +58,7 @@ public class HospitalRestController {
 
     }
     @PostMapping(value = "/confirm-account")
-    public ConfirmationToken confirmHospitalAccount(@RequestParam("token") String confirmToken){
+    public ConfirmationToken confirmHospitalAccount(@RequestParam("token") @Validated String confirmToken) {
         ConfirmationToken token = this.confirmationTokenRepository.findByConfirmationToken(confirmToken);
         System.out.println(token);
         if(token != null){
