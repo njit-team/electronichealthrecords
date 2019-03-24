@@ -16,7 +16,7 @@ public class AppointmentRestController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "/book")
     public Appointment bookAppointment(@RequestBody @Validated Appointment appointment) {
 
         Appointment bookedAppointment;
