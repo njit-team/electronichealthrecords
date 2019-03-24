@@ -5,9 +5,9 @@ import javax.validation.constraints.NotNull;
 
 public class Name {
 
-    @NotNull(message = "firstname is not sent in request")
+    @NotNull(message = "please enter your firstname")
     public String firstName;
-    @NotNull(message = "lastname is not sent in request")
+    @NotNull(message = "please enter your lastname")
     public String lastName;
     public String middleName;
 
