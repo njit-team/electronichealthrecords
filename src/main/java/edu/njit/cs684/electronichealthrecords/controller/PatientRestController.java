@@ -33,4 +33,28 @@ public class PatientRestController {
         return patient;
     }
 
+    @GetMapping(value = "/view-patient-medical-history/{patientId}")
+    public Patient viewPatientMedicalHistory(@RequestBody String patientId) {
+        Patient patient = patientService.viewPatientMedicalHistory(patientId);
+        return patient;
+    }
+
+    @GetMapping(value = "/view-patient-test-result/{patientId}")
+    public Patient viewPatientTestResult(@RequestBody String patientId) {
+        Patient patient = patientService.viewPatientTestResult(patientId);
+        return patient;
+    }
+
+    @GetMapping(value = "/view-patient-prescription/{patientId}")
+    public Patient viewPatientPrescription(@RequestBody String patientId) {
+        Patient patient = patientService.viewPatientPrescription(patientId);
+        return patient;
+    }
+
+    @GetMapping(value = "/view-comments-on-patient/{patientId}")
+    public Patient viewCommentsOnPatient(@RequestBody String patientId) {
+        Patient patient = patientService.viewCommentsOnPatient(patientId);
+        return patient;
+    }
+
 }

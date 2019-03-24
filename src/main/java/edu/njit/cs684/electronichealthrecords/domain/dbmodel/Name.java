@@ -1,10 +1,13 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
 
+import javax.validation.constraints.NotNull;
+
 public class Name {
 
-
+    @NotNull(message = "firstname is not sent in request")
     public String firstName;
+    @NotNull(message = "lastname is not sent in request")
     public String lastName;
     public String middleName;
 

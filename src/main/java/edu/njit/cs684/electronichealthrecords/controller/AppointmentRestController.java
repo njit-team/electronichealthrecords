@@ -3,6 +3,7 @@ package edu.njit.cs684.electronichealthrecords.controller;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import edu.njit.cs684.electronichealthrecords.services.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
@@ -15,7 +16,7 @@ public class AppointmentRestController {
     private AppointmentService appointmentService;
 
     @PostMapping(value = "/book-appointment")
-    public Appointment bookAppointment(@RequestBody Appointment appointment){
+    public Appointment bookAppointment(@RequestBody @Validated Appointment appointment) {
 
         Appointment bookedAppointment;
         bookedAppointment = appointmentService.bookAppointment(appointment.getPatientId(), appointment.getDoctorId(),

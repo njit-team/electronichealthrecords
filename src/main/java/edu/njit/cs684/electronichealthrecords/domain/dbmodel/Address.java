@@ -1,13 +1,21 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import javax.validation.constraints.NotNull;
+
 public class Address {
 
+    @NotNull(message = "Street address is not sent in request")
     private String street;
     private String apartment;
+    @NotNull(message = "city in address is not sent in request")
     private String city;
+    @NotNull(message = "state in address is not sent in request")
     private String state;
+    @NotNull(message = "zipcode in address is not sent in request")
     private String zipCode;
+    @NotNull(message = "phoneNumber in address is not sent in request")
     private String phoneNumber;
+    @NotNull(message = "Street address is not sent in request")
     private String country;
 
     public Address() {
