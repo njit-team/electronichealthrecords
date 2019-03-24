@@ -39,6 +39,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/users/sign-up").permitAll()
                 .antMatchers("/**").permitAll()
                 .and().httpBasic();
+        // this disables session creation on Spring Security
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     }
