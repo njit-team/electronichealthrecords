@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("appointment")
@@ -34,7 +35,8 @@ public class AppointmentRestController {
         return error;
     }
 
-    @PostMapping(value = "/book-appointment")
+    @PostMapping(value = "/book")
+
     public Appointment bookAppointment(@RequestBody @Validated Appointment appointment) {
 
         Appointment bookedAppointment;
@@ -43,7 +45,7 @@ public class AppointmentRestController {
         return bookedAppointment;
     }
 
-    @GetMapping(value = "/view-appointment/{appointmentId}")
+    @GetMapping(value = "/view/{appointmentId}")
     public Appointment viewAppointment(@PathVariable String appointmentId) {
 
         Appointment appointment;
@@ -51,7 +53,14 @@ public class AppointmentRestController {
         return appointment;
     }
 
-    @PostMapping(value = "/update-appointment/{appointmentId}")
+    @GetMapping(value = "/view/all")
+    public List<Appointment> viewAllAppointment() {
+        List<Appointment> appointments;
+        appointments = appointmentService.viewAllAppointment();
+        return appointments;
+    }
+
+    @PostMapping(value = "/update/{appointmentId}")
     public Appointment updateAppointment(@PathVariable String appointmentId, ZonedDateTime appointmentNewDateTime) {
         Appointment appointment;
         appointment = appointmentService.updateAppointment(appointmentId, appointmentNewDateTime);
@@ -59,7 +68,7 @@ public class AppointmentRestController {
 
     }
 
-    @DeleteMapping(value = "/delete-appointment/{appointmentId}")
+    @DeleteMapping(value = "/delete/{appointmentId}")
     public Appointment deleteAppointment(@PathVariable String appointmentId) {
         Appointment appointment;
         appointment = appointmentService.deleteAppointment(appointmentId);
