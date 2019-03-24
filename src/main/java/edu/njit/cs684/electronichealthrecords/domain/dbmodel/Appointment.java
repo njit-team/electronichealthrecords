@@ -10,12 +10,13 @@ public class Appointment {
 
     @Id
     private String appointmentId;
-    @NotNull(message = "patientId is not sent in request")
+    @NotNull(message = "please enter patients ID")
     private String patientId;
-    @NotNull(message = "doctorId is not sent in request")
+    @NotNull(message = "please enter doctor's name")
     private String doctorId;
-    @NotNull(message = "Appointment Date time is not sent in request.")
+    @NotNull(message = "please enter appointment date and time.")
     private String appointmentDateTime;
+    @NotNull(message = "please enter Appointment Reason.")
     private String appointmentReason;
 
     public String getAppointmentId() {
