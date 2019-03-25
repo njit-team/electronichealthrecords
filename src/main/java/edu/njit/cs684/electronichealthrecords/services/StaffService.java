@@ -20,10 +20,7 @@ public class StaffService {
 
     public List<Staff> getStaffInfo() {
         List<Staff> returnedStaff = this.staffRepository.findAll();
-
         return returnedStaff;
-
-
     }
 
 

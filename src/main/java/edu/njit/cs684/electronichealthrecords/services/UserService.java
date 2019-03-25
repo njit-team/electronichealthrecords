@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -41,4 +42,19 @@ public class UserService {
         logger.info("Deleted User:" + deletedUsername);
         return deletedUsername;
     }
+
+    @Secured({"ROLE_PATIENT", "ROLE_DOCTOR"})
+    public User viewMedicalHistory(String patientId) {
+        User user;
+        Optional<User> optionalUser = applicationUserRepository.findById(patientId);
+        user = optionalUser.orElse(null);
+        return user;
+    }
+
+
+
+
+
+
+
 }
