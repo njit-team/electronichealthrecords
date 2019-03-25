@@ -1,10 +1,13 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
 
+import javax.validation.constraints.NotNull;
+
 public class Name {
 
-
+    @NotNull(message = "please enter your firstname")
     public String firstName;
+    @NotNull(message = "please enter your lastname")
     public String lastName;
     public String middleName;
 

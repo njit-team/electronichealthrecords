@@ -3,18 +3,22 @@ package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+
 @Document
 public class Hospital {
 
-
-
     @Id
     private String hospitalID;
+    @NotNull(message = "Hospital name is not sent in request")
     private String name;
+    @NotNull(message = "Hospital address is not sent in request")
     private String address;
+    @NotNull(message = "Hospital phoneNumber is not sent in request")
     private String phoneNumber;
+    @NotNull(message = "Hospital email is not sent in request")
     private String email;
-    private String password;
+    @NotNull(message = "Hospital active status is not sent in request")
     private boolean isEnabled;
 
 
@@ -54,7 +58,6 @@ public class Hospital {
         this.address = address;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -70,17 +73,5 @@ public class Hospital {
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-
-
 
 }

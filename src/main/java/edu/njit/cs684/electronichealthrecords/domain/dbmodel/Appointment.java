@@ -3,13 +3,18 @@ package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+
 @Document
 public class Appointment {
 
     @Id
     private String appointmentId;
+    @NotNull(message = "patientId is not sent in request")
     private String patientId;
+    @NotNull(message = "doctorId is not sent in request")
     private String doctorId;
+    @NotNull(message = "Appointment Date time is not sent in request.")
     private String appointmentDateTime;
     private String appointmentReason;
 

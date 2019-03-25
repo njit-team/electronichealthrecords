@@ -4,9 +4,11 @@
 
 package edu.njit.cs684.electronichealthrecords.domain.restmoel;
 
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Account;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.Role;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.User;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +17,16 @@ import java.util.List;
  */
 public class UserRest {
 
+    @NotNull(message = "username is not sent in request")
     private String username;
+    @NotNull(message = "password is not sent in request")
     private String password;
+    @NotNull(message = "user role is not sent in request")
     private List<String> roles;
+    @NotNull(message = "staff type is not sent in request")
+    private String staffType;
+    @NotNull(message = "account is not sent in request")
+    private Account account;
 
     public UserRest() {
     }
@@ -32,6 +41,8 @@ public class UserRest {
         UserRest userRest = new UserRest();
         userRest.setPassword("*********");
         userRest.setUsername(user.getUsername());
+        userRest.setAccount(user.getAccount());
+        userRest.setStaffType(user.getStaffType());
         List<String> roles = new ArrayList<>();
         for (Role r : user.getRoles()) {
             String role = r.getRole().substring(r.getRole().indexOf("ROLE_"));
@@ -79,6 +90,8 @@ public class UserRest {
         User user = new User();
         user.setPassword(this.password);
         user.setUsername(this.username);
+        user.setAccount(this.account);
+        user.setStaffType(this.staffType);
         List<Role> roles = new ArrayList<>();
         for (String r : this.roles) {
             Role role = new Role();
@@ -87,5 +100,21 @@ public class UserRest {
         }
         user.setRoles(roles);
         return user;
+    }
+
+    public String getStaffType() {
+        return staffType;
+    }
+
+    public void setStaffType(String staffType) {
+        this.staffType = staffType;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

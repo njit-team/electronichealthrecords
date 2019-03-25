@@ -2,35 +2,44 @@ package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 
-public class Account {
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
+public class Account {
+    @Valid
     private Name name;
+
+    @NotNull(message = "please enter your address")
     private Address address;
+    @NotNull(message = "please enter your date of birth")
+
+
     private String dateOfBirth;
+    @NotNull(message = "please enter your phone number ")
     private Long phoneNumber;
+    @NotNull(message = "please enter your gender")
     private String gender;
     @Indexed(unique = true)
+    @Email
+    @NotNull(message = "please enter your email")
     private String email;
 
     public Account() {
     }
 
-    public Account(Name name, Address address, String dateOfBirth, Long phoneNumber, String gender, String email) {
+
+    public Account(Name name, Address address, String dateOfBirth, Long phoneNumber, String gender, String Email) {
+
         this.name = name;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.email = email;
+
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public Name getName() {
         return name;
@@ -70,6 +79,14 @@ public class Account {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 

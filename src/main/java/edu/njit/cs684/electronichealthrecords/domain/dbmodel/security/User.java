@@ -4,6 +4,7 @@
 
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel.security;
 
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Account;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,8 @@ public class User {
     private String username;
     private String password;
     private List<Role> roles;
+    private String staffType;
+    private Account account;
 
     public User() {
     }
@@ -70,5 +73,21 @@ public class User {
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    public String getStaffType() {
+        return staffType;
+    }
+
+    public void setStaffType(String staffType) {
+        this.staffType = staffType;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

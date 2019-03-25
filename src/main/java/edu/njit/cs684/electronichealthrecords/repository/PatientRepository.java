@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PatientRepository extends MongoRepository<Patient,String> {
+public interface PatientRepository extends MongoRepository<Patient, String> {
 
     List<Patient> findAll();
 
     Optional<Patient> findByAccountEmail(String email);
 
 }
+

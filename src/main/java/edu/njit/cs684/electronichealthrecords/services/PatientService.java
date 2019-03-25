@@ -45,5 +45,31 @@ public class PatientService {
 
     }
 
+    public Patient viewPatientMedicalHistory(String patientId) {
+        Patient patient;
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        patient = optionalPatient.orElse(null);
+        return patient;
+    }
 
+    public Patient viewPatientTestResult(String patientId) {
+        Patient patient;
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        patient = optionalPatient.orElse(null);
+        return patient;
+    }
+
+    public Patient viewPatientPrescription(String patientId) {
+        Patient patient;
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        patient = optionalPatient.orElse(null);
+        return patient;
+    }
+
+    public Patient viewCommentsOnPatient(String patientId) {
+        Patient patient;
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        patient = optionalPatient.orElse(null);
+        return patient;
+    }
 }
