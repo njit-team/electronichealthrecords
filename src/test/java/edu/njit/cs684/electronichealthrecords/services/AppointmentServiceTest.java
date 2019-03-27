@@ -2,6 +2,7 @@ package edu.njit.cs684.electronichealthrecords.services;
 
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import edu.njit.cs684.electronichealthrecords.repository.AppointmentRepository;
+import edu.njit.cs684.electronichealthrecords.testusers.MockDoctorRole;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,7 @@ public class AppointmentServiceTest {
     private AppointmentRepository appointmentRepository;
 
     @Test
+    @MockDoctorRole
     public void bookAppointment() {
         Assert.assertNotNull(appointmentService);
         String patientId = "SD12";
@@ -38,6 +40,7 @@ public class AppointmentServiceTest {
     }
 
     @Test
+    @MockDoctorRole
     public void updateAppointment() {
         Assert.assertNotNull(appointmentService);
         String patientId = "SD12";

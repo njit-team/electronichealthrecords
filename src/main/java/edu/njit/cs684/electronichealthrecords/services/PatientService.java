@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PatientService {
+public class
+PatientService {
 
     @Autowired
     PatientRepository patientRepository;

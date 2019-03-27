@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document
 public class Patient {
@@ -16,6 +18,11 @@ public class Patient {
     private String patientId;
     @NotNull(message = "Patient account not sent in request.")
     private Account account;
+    private MedicalHistory medicalHistory;
+    private List<String> labTests = new ArrayList<>();
+    private List<Prescription> prescription;
+    private String additionalComments;
+
 
     public Patient()  {
     }
@@ -51,6 +58,46 @@ public class Patient {
                 ", patientId='" + patientId + '\'' +
                 ", account=" + account +
                 '}';
+    }
+
+    public MedicalHistory getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public void setMedicalHistory(MedicalHistory medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
+    public List<String> getLabTests() {
+        return labTests;
+    }
+
+    public void setLabTests(List<String> labTests) {
+        this.labTests = labTests;
+    }
+
+    public List<Prescription> getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(List<Prescription> prescription) {
+        this.prescription = prescription;
+    }
+
+    public List<Prescription> getPrescriptions() {
+        return prescription;
+    }
+
+    public void addPrescription(Prescription prescription) {
+        this.prescription.add(prescription);
+    }
+
+    public String getAdditionalComments() {
+        return additionalComments;
+    }
+
+    public void setAdditionalComments(String additionalComments) {
+        this.additionalComments = additionalComments;
     }
 }
 
