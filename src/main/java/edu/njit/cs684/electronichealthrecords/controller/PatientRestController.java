@@ -35,25 +35,25 @@ public class PatientRestController {
     }
 
     @GetMapping(value = "/medical/history/{patientId}")
-    public Patient viewPatientMedicalHistory(@RequestBody @Validated String patientId) {
+    public Patient viewPatientMedicalHistory(@PathVariable @Validated String patientId) {
         Patient patient = patientService.viewPatientMedicalHistory(patientId);
         return patient;
     }
 
     @GetMapping(value = "/test/result/{patientId}")
-    public Patient viewPatientTestResult(@RequestBody @Validated String patientId) {
+    public Patient viewPatientTestResult(@PathVariable @Validated String patientId) {
         Patient patient = patientService.viewPatientTestResult(patientId);
         return patient;
     }
 
     @GetMapping(value = "/prescription/{patientId}")
-    public Patient viewPatientPrescription(@RequestBody @Validated String patientId) {
+    public Patient viewPatientPrescription(@PathVariable @Validated String patientId) {
         Patient patient = patientService.viewPatientPrescription(patientId);
         return patient;
     }
 
     @GetMapping(value = "/comments/{patientId}")
-    public Patient viewCommentsOnPatient(@RequestBody @Validated String patientId) {
+    public Patient viewCommentsOnPatient(@PathVariable @Validated String patientId) {
         Patient patient = patientService.viewCommentsOnPatient(patientId);
         return patient;
     }
