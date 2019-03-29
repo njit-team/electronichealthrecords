@@ -1,6 +1,8 @@
 package edu.njit.cs684.electronichealthrecords.controller;
 
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.MedicalHistory;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
 import edu.njit.cs684.electronichealthrecords.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -35,27 +37,27 @@ public class PatientRestController {
     }
 
     @GetMapping(value = "/medical/history/{patientId}")
-    public Patient viewPatientMedicalHistory(@PathVariable @Validated String patientId) {
-        Patient patient = patientService.viewPatientMedicalHistory(patientId);
-        return patient;
+    public MedicalHistory viewPatientMedicalHistory(@PathVariable @Validated String patientId) {
+        MedicalHistory patientMedicalHistory = patientService.viewPatientMedicalHistory(patientId);
+        return patientMedicalHistory;
     }
 
     @GetMapping(value = "/test/result/{patientId}")
-    public Patient viewPatientTestResult(@PathVariable @Validated String patientId) {
-        Patient patient = patientService.viewPatientTestResult(patientId);
-        return patient;
+    public List<String> viewPatientTestResult(@PathVariable @Validated String patientId) {
+        List<String> patientTestResult = patientService.viewPatientTestResult(patientId);
+        return patientTestResult;
     }
 
     @GetMapping(value = "/prescription/{patientId}")
-    public Patient viewPatientPrescription(@PathVariable @Validated String patientId) {
-        Patient patient = patientService.viewPatientPrescription(patientId);
-        return patient;
+    public List<Prescription> viewPatientPrescription(@PathVariable @Validated String patientId) {
+        List<Prescription> patientPrescription = patientService.viewPatientPrescription(patientId);
+        return patientPrescription;
     }
 
     @GetMapping(value = "/comments/{patientId}")
-    public Patient viewCommentsOnPatient(@PathVariable @Validated String patientId) {
-        Patient patient = patientService.viewCommentsOnPatient(patientId);
-        return patient;
+    public List<String> viewCommentsOnPatient(@PathVariable @Validated String patientId) {
+        List<String> patientComments = patientService.viewCommentsOnPatient(patientId);
+        return patientComments;
     }
 
 }
