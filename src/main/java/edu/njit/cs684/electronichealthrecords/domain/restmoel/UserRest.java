@@ -23,8 +23,8 @@ public class UserRest {
     private String password;
     @NotNull(message = "user role is not sent in request")
     private List<String> roles;
-    @NotNull(message = "staff type is not sent in request")
-    private String staffType;
+    @NotNull(message = "User type is not sent in request")
+    private String userType;
     @NotNull(message = "account is not sent in request")
     private Account account;
 
@@ -42,7 +42,7 @@ public class UserRest {
         userRest.setPassword("*********");
         userRest.setUsername(user.getUsername());
         userRest.setAccount(user.getAccount());
-        userRest.setStaffType(user.getStaffType());
+        userRest.setUserType(user.getStaffType());
         List<String> roles = new ArrayList<>();
         for (Role r : user.getRoles()) {
             String role = r.getRole().substring(r.getRole().indexOf("ROLE_"));
@@ -91,7 +91,7 @@ public class UserRest {
         user.setPassword(this.password);
         user.setUsername(this.username);
         user.setAccount(this.account);
-        user.setStaffType(this.staffType);
+        user.setStaffType(this.userType);
         List<Role> roles = new ArrayList<>();
         for (String r : this.roles) {
             Role role = new Role();
@@ -102,12 +102,12 @@ public class UserRest {
         return user;
     }
 
-    public String getStaffType() {
-        return staffType;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setStaffType(String staffType) {
-        this.staffType = staffType;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public Account getAccount() {

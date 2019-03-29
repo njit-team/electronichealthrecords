@@ -20,8 +20,8 @@ public class Patient {
     private Account account;
     private MedicalHistory medicalHistory;
     private List<String> labTests = new ArrayList<>();
-    private List<Prescription> prescription;
-    private String additionalComments;
+    private List<Prescription> prescription = new ArrayList<>();
+    private List<String> additionalComments = new ArrayList<>();
 
 
     public Patient()  {
@@ -84,20 +84,20 @@ public class Patient {
         this.prescription = prescription;
     }
 
-    public List<Prescription> getPrescriptions() {
-        return prescription;
-    }
-
-    public void addPrescription(Prescription prescription) {
-        this.prescription.add(prescription);
-    }
-
-    public String getAdditionalComments() {
+    public List<String> getAdditionalComments() {
         return additionalComments;
     }
 
-    public void setAdditionalComments(String additionalComments) {
+    public void setAdditionalComments(List<String> additionalComments) {
         this.additionalComments = additionalComments;
+    }
+
+    public void addcomments(String comment) {
+        additionalComments.add(comment);
+    }
+
+    public void addPrescription(Prescription prescription1) {
+        prescription.add(prescription1);
     }
 }
 
