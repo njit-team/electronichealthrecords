@@ -1,5 +1,8 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Prescription {
 
     private String medicineName;

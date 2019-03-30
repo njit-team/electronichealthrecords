@@ -1,11 +1,13 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Account {
     @Valid
     private Name name;

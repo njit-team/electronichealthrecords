@@ -1,7 +1,10 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.validation.constraints.NotNull;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address {
 
     @NotNull(message = "Street address is not sent in request")
