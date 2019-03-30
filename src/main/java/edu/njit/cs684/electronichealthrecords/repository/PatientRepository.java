@@ -14,5 +14,7 @@ public interface PatientRepository extends MongoRepository<Patient, String> {
 
     Optional<Patient> findByAccountEmail(String email);
 
+    Optional<Patient> findByPatientId(String patiendId);
+
 }
 

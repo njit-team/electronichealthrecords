@@ -4,6 +4,7 @@
 
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel.security;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Account;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -15,6 +16,7 @@ import java.util.List;
  * @author sulekha
  */
 @Document
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     @Id
     private String id;

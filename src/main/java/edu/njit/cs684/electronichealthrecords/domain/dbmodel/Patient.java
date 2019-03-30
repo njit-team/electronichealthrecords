@@ -1,5 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Patient {
 
     @Id
@@ -18,7 +20,7 @@ public class Patient {
     private String patientId;
     @NotNull(message = "Patient account not sent in request.")
     private Account account;
-    private MedicalHistory medicalHistory;
+    private MedicalHistory medicalHistory = new MedicalHistory();
     private List<String> labTests = new ArrayList<>();
     private List<Prescription> prescription = new ArrayList<>();
     private List<String> additionalComments = new ArrayList<>();

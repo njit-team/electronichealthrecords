@@ -1,9 +1,11 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel.security;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Objects;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Role implements GrantedAuthority {
 
     private String role;

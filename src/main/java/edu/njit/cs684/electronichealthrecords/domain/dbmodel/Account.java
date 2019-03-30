@@ -1,11 +1,13 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Account {
     @Valid
     private Name name;
@@ -13,11 +15,7 @@ public class Account {
     @NotNull(message = "please enter your address")
     private Address address;
     @NotNull(message = "please enter your date of birth")
-
-
     private String dateOfBirth;
-    @NotNull(message = "please enter your phone number ")
-    private Long phoneNumber;
     @NotNull(message = "please enter your gender")
     private String gender;
     @Indexed(unique = true)
@@ -30,14 +28,11 @@ public class Account {
 
 
     public Account(Name name, Address address, String dateOfBirth, Long phoneNumber, String gender, String Email) {
-
         this.name = name;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.email = email;
-
     }
 
 
@@ -65,14 +60,6 @@ public class Account {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Long getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -88,8 +75,4 @@ public class Account {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
-
-
 }

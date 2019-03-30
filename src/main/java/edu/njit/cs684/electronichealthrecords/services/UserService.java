@@ -32,7 +32,7 @@ public class UserService {
         return savedUser;
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_DOCTOR"})
     public User deleteUser(String username) {
         User deletedUsername = applicationUserRepository.findByUsername(username);
         if (Objects.isNull(deletedUsername)) {
@@ -50,11 +50,4 @@ public class UserService {
         user = optionalUser.orElse(null);
         return user;
     }
-
-
-
-
-
-
-
 }

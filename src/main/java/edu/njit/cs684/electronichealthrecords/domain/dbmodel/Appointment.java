@@ -1,11 +1,13 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 
 @Document
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Appointment {
 
     @Id
