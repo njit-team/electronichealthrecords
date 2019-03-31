@@ -14,9 +14,7 @@ public class LabTest {
     @Indexed(unique = true)
     @NotNull(message = "test name not sent in request.")
     private String testName;
-    @NotNull(message = "test result not sent in request.")
     private String testResult;
-    @NotNull(message = "comments not sent in request.")
     private String comments;
 
     private Boolean completed;

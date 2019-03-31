@@ -21,7 +21,7 @@ public class DoctorService {
     @Secured({"ROLE_DOCTOR"})
     public void prescribeDrugs(String patientId, Prescription prescription) {
         Patient patient;
-        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        Optional<Patient> optionalPatient = patientRepository.findByPatientId(patientId);
         patient = optionalPatient.orElse(null);
         if (optionalPatient.isPresent()) {
             patient.addPrescription(prescription);
@@ -30,16 +30,14 @@ public class DoctorService {
     }
 
     @Secured({"ROLE_DOCTOR"})
-    public void prescribeTests(String patientId, String testName) {
+    public void prescribeTests(String patientId, LabTest labTest) {
         Patient patient;
-        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        Optional<Patient> optionalPatient = patientRepository.findByPatientId(patientId);
 
         if (optionalPatient.isPresent()) {
             patient = optionalPatient.orElse(null);
-            LabTest labTest = new LabTest();
-            labTest.setTestName(testName);
             LabTest savedLabTest = labTestService.saveInitialLabTest(labTest);
-            patient.getLabTests().add(savedLabTest.getId());
+            patient.getLabTests().add(savedLabTest);
             patientRepository.save(patient);
         }
     }
@@ -47,7 +45,7 @@ public class DoctorService {
     @Secured({"ROLE_DOCTOR"})
     public void writeComments(String patientId, String comments) {
         Patient patient;
-        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        Optional<Patient> optionalPatient = patientRepository.findByPatientId(patientId);
         patient = optionalPatient.orElse(null);
         if (optionalPatient.isPresent()) {
             patient.addcomments(comments);

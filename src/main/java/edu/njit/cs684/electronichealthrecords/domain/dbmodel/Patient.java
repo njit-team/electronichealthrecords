@@ -21,7 +21,7 @@ public class Patient {
     @NotNull(message = "Patient account not sent in request.")
     private Account account;
     private MedicalHistory medicalHistory = new MedicalHistory();
-    private List<String> labTests = new ArrayList<>();
+    private List<LabTest> labTests = new ArrayList<>();
     private List<Prescription> prescription = new ArrayList<>();
     private List<String> additionalComments = new ArrayList<>();
 
@@ -70,11 +70,11 @@ public class Patient {
         this.medicalHistory = medicalHistory;
     }
 
-    public List<String> getLabTests() {
+    public List<LabTest> getLabTests() {
         return labTests;
     }
 
-    public void setLabTests(List<String> labTests) {
+    public void setLabTests(List<LabTest> labTests) {
         this.labTests = labTests;
     }
 
