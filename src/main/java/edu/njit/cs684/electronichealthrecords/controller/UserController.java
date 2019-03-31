@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @author sulekha
  * njit_cs_684_electronichealthrecords, 2019
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
