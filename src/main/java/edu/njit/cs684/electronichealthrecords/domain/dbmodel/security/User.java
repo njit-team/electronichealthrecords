@@ -22,7 +22,7 @@ public class User {
     private String username;
     private String password;
     private List<Role> roles;
-    private String staffType;
+    private String userType;
     private Account account;
 
     public User() {
@@ -75,12 +75,12 @@ public class User {
                 '}';
     }
 
-    public String getStaffType() {
-        return staffType;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setStaffType(String staffType) {
-        this.staffType = staffType;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public Account getAccount() {
