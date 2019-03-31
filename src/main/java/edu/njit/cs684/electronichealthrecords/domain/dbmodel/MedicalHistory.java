@@ -4,16 +4,16 @@ import java.time.ZonedDateTime;
 
 public class MedicalHistory {
 
-    private ZonedDateTime timeStamp = ZonedDateTime.now();
+    private String timeStamp = ZonedDateTime.now().toString();
     private String record;
     private String additionalComments;
 
-    public ZonedDateTime getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(ZonedDateTime timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimeStamp(String timeStampString) {
+        this.timeStamp = timeStampString;
     }
 
     public String getRecord() {

@@ -1,5 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.domain.dbmodel;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Patient {
 
     @Id
@@ -18,10 +20,10 @@ public class Patient {
     private String patientId;
     @NotNull(message = "Patient account not sent in request.")
     private Account account;
-    private MedicalHistory medicalHistory;
+    private MedicalHistory medicalHistory = new MedicalHistory();
     private List<String> labTests = new ArrayList<>();
-    private List<Prescription> prescription;
-    private String additionalComments;
+    private List<Prescription> prescription = new ArrayList<>();
+    private List<String> additionalComments = new ArrayList<>();
 
 
     public Patient()  {
@@ -84,20 +86,20 @@ public class Patient {
         this.prescription = prescription;
     }
 
-    public List<Prescription> getPrescriptions() {
-        return prescription;
-    }
-
-    public void addPrescription(Prescription prescription) {
-        this.prescription.add(prescription);
-    }
-
-    public String getAdditionalComments() {
+    public List<String> getAdditionalComments() {
         return additionalComments;
     }
 
-    public void setAdditionalComments(String additionalComments) {
+    public void setAdditionalComments(List<String> additionalComments) {
         this.additionalComments = additionalComments;
+    }
+
+    public void addcomments(String comment) {
+        additionalComments.add(comment);
+    }
+
+    public void addPrescription(Prescription prescription1) {
+        prescription.add(prescription1);
     }
 }
 

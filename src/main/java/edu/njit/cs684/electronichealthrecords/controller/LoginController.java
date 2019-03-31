@@ -23,7 +23,7 @@ public class LoginController {
     private UserDetailsService userDetailsService;
 
     @GetMapping(value = "/login")
-    @Secured({"ROLE_DOCTOR", "ROLE_PATIENT"})
+    @Secured({"ROLE_DOCTOR", "ROLE_PATIENT", "ROLE_RECEPTIONIST"})
     public LoginResponse login(HttpSession session, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
         LoginResponse loginResponse = new LoginResponse(session, userDetails);

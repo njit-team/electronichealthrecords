@@ -44,4 +44,16 @@ public class DoctorService {
         }
     }
 
+    @Secured({"ROLE_DOCTOR"})
+    public void writeComments(String patientId, String comments) {
+        Patient patient;
+        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
+        patient = optionalPatient.orElse(null);
+        if (optionalPatient.isPresent()) {
+            patient.addcomments(comments);
+            patientRepository.save(patient);
+        }
+
+    }
+
 }
