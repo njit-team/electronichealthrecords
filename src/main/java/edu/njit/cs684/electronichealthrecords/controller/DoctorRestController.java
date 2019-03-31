@@ -19,13 +19,13 @@ public class DoctorRestController {
     @Autowired
     PatientService patientService;
 
-    @PostMapping(value = "/prescribe/drugs")
-    public void prescribeDrugs(@RequestBody String patientId, Prescription prescription) {
+    @PostMapping(value = "/prescribe/drugs/{patientId}")
+    public void prescribeDrugs(@PathVariable String patientId, @RequestBody @Validated Prescription prescription) {
         doctorService.prescribeDrugs(patientId, prescription);
     }
 
-    @PostMapping(value = "/prescribe/tests")
-    public void prescribeTests(@RequestBody String patientId, String testName) {
+    @PostMapping(value = "/prescribe/tests/{patientId}")
+    public void prescribeTests(@PathVariable String patientId, @RequestBody @Validated String testName) {
         doctorService.prescribeTests(patientId, testName);
     }
 
@@ -41,8 +41,8 @@ public class DoctorRestController {
         return patientTestResult;
     }
 
-    @PostMapping(value = "/comments")
-    public List<String> writeComments(@RequestBody @Validated String patientId, String comments) {
+    @PostMapping(value = "/comments/{patientId}")
+    public List<String> writeComments(@PathVariable String patientId, @RequestBody @Validated String comments) {
         doctorService.writeComments(patientId, comments);
         List<String> patientComments = patientService.viewCommentsOnPatient(patientId);
         return patientComments;
