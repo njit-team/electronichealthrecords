@@ -3,6 +3,7 @@ package edu.njit.cs684.electronichealthrecords.services;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.LabTest;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
+import edu.njit.cs684.electronichealthrecords.exception.PatientDoesNotExist;
 import edu.njit.cs684.electronichealthrecords.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -39,6 +40,8 @@ public class DoctorService {
             LabTest savedLabTest = labTestService.saveInitialLabTest(labTest);
             patient.getLabTests().add(savedLabTest);
             patientRepository.save(patient);
+        } else {
+            throw new PatientDoesNotExist("Patient with id " + patientId + " does not exist.");
         }
     }
 

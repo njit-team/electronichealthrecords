@@ -17,7 +17,7 @@ public class LabTestService {
     @Autowired
     PatientService patientService;
 
-    @Secured("ROLE_LABTECHNICIAN")
+    @Secured({"ROLE_LABTECHNICIAN", "ROLE_DOCTOR"})
     public LabTest performLabTest(String labTestId, String testResult, String comments) {
         LabTest savedLabTest = null;
         Optional<LabTest> labTestbyId = labRepository.findById(labTestId);
@@ -42,7 +42,7 @@ public class LabTestService {
         return savedLabTest;
     }
 
-    @Secured("ROLE_LABTECHNICIAN")
+    @Secured({"ROLE_LABTECHNICIAN", "ROLE_DOCTOR"})
     public LabTest findLabTestById(String labTestId) {
         LabTest labTest;
         Optional<LabTest> optionalLabTest = labRepository.findById(labTestId);
