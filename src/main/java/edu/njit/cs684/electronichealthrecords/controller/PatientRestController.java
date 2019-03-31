@@ -1,5 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.controller;
 
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.LabTest;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.MedicalHistory;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
@@ -44,8 +45,8 @@ public class PatientRestController {
     }
 
     @GetMapping(value = "/test/result/{patientId}")
-    public List<String> viewPatientTestResult(@PathVariable @Validated String patientId) {
-        List<String> patientTestResult = patientService.viewPatientTestResult(patientId);
+    public List<LabTest> viewPatientTestResult(@PathVariable @Validated String patientId) {
+        List<LabTest> patientTestResult = patientService.viewPatientTestResult(patientId);
         return patientTestResult;
     }
 

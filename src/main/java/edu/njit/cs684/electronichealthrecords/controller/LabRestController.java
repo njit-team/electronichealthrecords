@@ -4,11 +4,7 @@ import edu.njit.cs684.electronichealthrecords.domain.dbmodel.LabTest;
 import edu.njit.cs684.electronichealthrecords.services.LabTestService;
 import edu.njit.cs684.electronichealthrecords.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,8 +25,8 @@ public class LabRestController {
         return labTest;
     }
 
-    @GetMapping(value = "/findById")
-    public LabTest findLabTestById(String labTestId) {
+    @GetMapping(value = "/findById/{labTestId}")
+    public LabTest findLabTestById(@PathVariable String labTestId) {
         LabTest labTest = labTestService.findLabTestById(labTestId);
         return labTest;
     }
