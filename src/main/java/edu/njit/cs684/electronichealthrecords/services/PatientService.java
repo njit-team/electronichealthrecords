@@ -1,6 +1,5 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
-import edu.njit.cs684.electronichealthrecords.domain.dbmodel.LabTest;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.MedicalHistory;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
@@ -59,7 +58,7 @@ PatientService {
     }
 
     @Secured({"ROLE_DOCTOR", "ROLE_RECEPTIONIST", "ROLE_PATIENT"})
-    public List<LabTest> viewPatientTestResult(String patientId) {
+    public List<String> viewPatientTestResult(String patientId) {
         Patient patient;
         Optional<Patient> optionalPatient = patientRepository.findByPatientId(patientId);
         patient = optionalPatient.orElse(null);

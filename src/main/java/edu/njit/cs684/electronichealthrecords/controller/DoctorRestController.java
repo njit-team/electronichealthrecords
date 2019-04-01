@@ -37,8 +37,8 @@ public class DoctorRestController {
     }
 
     @GetMapping(value = "/test/result/{patientId}")
-    public List<LabTest> viewPatientTestResult(@PathVariable @Validated String patientId) {
-        List<LabTest> patientTestResult = patientService.viewPatientTestResult(patientId);
+    public List<String> viewPatientTestResult(@PathVariable @Validated String patientId) {
+        List<String> patientTestResult = patientService.viewPatientTestResult(patientId);
         return patientTestResult;
     }
 
