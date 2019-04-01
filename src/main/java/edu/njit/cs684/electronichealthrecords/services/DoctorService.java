@@ -38,7 +38,7 @@ public class DoctorService {
         if (optionalPatient.isPresent()) {
             patient = optionalPatient.orElse(null);
             LabTest savedLabTest = labTestService.saveInitialLabTest(labTest);
-            patient.getLabTests().add(savedLabTest);
+            patient.getLabTests().add(savedLabTest.getId());
             patientRepository.save(patient);
         } else {
             throw new PatientDoesNotExist("Patient with id " + patientId + " does not exist.");
