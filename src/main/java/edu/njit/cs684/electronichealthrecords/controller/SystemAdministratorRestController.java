@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+
 @RestController
-@RequestMapping(value = "/healthcare/staff", method = RequestMethod.GET)
+@RequestMapping(value = "staff", method = RequestMethod.GET)
 public class SystemAdministratorRestController {
     @Autowired
     StaffRepository staffRepository;
