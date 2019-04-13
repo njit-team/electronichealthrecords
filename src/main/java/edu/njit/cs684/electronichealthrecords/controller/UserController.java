@@ -4,7 +4,7 @@
 
 package edu.njit.cs684.electronichealthrecords.controller;
 
-import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.User;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.AppUser;
 import edu.njit.cs684.electronichealthrecords.domain.restmoel.UserRest;
 import edu.njit.cs684.electronichealthrecords.services.UserService;
 import org.slf4j.Logger;
@@ -34,15 +34,15 @@ public class UserController {
     @PostMapping(value = "/sign-up", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public UserRest signUp(@RequestBody @Validated UserRest userRest) {
-        User user = userRest.userRestToUser();
-        User savedUser = userService.signUp(user);
-        return UserRest.userToUserRest(savedUser);
+        AppUser appUser = userRest.userRestToUser();
+        AppUser savedAppUser = userService.signUp(appUser);
+        return UserRest.userToUserRest(savedAppUser);
     }
 
     @GetMapping(value = "/delete-user/{username}", consumes = MediaType.ALL_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public UserRest deleteUser(@PathVariable String username) {
-        User deletedUser = userService.deleteUser(username);
-        return UserRest.userToUserRest(deletedUser);
+        AppUser deletedAppUser = userService.deleteUser(username);
+        return UserRest.userToUserRest(deletedAppUser);
     }
 }

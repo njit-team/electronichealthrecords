@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Document
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User {
+public class AppUser {
     @Id
     private String id;
     @Indexed(unique = true)
@@ -27,10 +27,10 @@ public class User {
     private String userType;
     private Account account;
 
-    public User() {
+    public AppUser() {
     }
 
-    public User(String username, String password) {
+    public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -69,7 +69,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "AppUser{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

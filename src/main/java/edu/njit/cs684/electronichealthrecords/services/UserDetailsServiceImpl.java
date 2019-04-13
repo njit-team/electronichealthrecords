@@ -4,7 +4,7 @@
 
 package edu.njit.cs684.electronichealthrecords.services;
 
-import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.User;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.AppUser;
 import edu.njit.cs684.electronichealthrecords.repository.ApplicationUserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,12 +24,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = applicationUserRepository.findByUsername(username);
-        if (user == null) {
+        AppUser appUser = applicationUserRepository.findByUsername(username);
+        if (appUser == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.getRoles());
+        return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPassword(),
+                appUser.getRoles());
     }
 
 

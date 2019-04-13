@@ -1,6 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
-import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.User;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.AppUser;
 import edu.njit.cs684.electronichealthrecords.repository.ApplicationUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,28 +26,28 @@ public class UserService {
     }
 
     @Secured("ROLE_ANONYMOUS")
-    public User signUp(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        User savedUser = applicationUserRepository.save(user);
-        return savedUser;
+    public AppUser signUp(AppUser appUser) {
+        appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
+        AppUser savedAppUser = applicationUserRepository.save(appUser);
+        return savedAppUser;
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_DOCTOR"})
-    public User deleteUser(String username) {
-        User deletedUsername = applicationUserRepository.findByUsername(username);
+    public AppUser deleteUser(String username) {
+        AppUser deletedUsername = applicationUserRepository.findByUsername(username);
         if (Objects.isNull(deletedUsername)) {
-            throw new RuntimeException("User does not exist." + username);
+            throw new RuntimeException("AppUser does not exist." + username);
         }
         applicationUserRepository.deleteById(deletedUsername.getId());
-        logger.info("Deleted User:" + deletedUsername);
+        logger.info("Deleted AppUser:" + deletedUsername);
         return deletedUsername;
     }
 
     @Secured({"ROLE_PATIENT", "ROLE_DOCTOR"})
-    public User viewMedicalHistory(String patientId) {
-        User user;
-        Optional<User> optionalUser = applicationUserRepository.findById(patientId);
-        user = optionalUser.orElse(null);
-        return user;
+    public AppUser viewMedicalHistory(String patientId) {
+        AppUser appUser;
+        Optional<AppUser> optionalUser = applicationUserRepository.findById(patientId);
+        appUser = optionalUser.orElse(null);
+        return appUser;
     }
 }
