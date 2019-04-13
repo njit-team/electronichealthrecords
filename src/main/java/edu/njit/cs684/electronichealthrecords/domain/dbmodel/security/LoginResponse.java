@@ -1,4 +1,4 @@
-package edu.njit.cs684.electronichealthrecords.controller;
+package edu.njit.cs684.electronichealthrecords.domain.dbmodel.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
