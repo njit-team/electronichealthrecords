@@ -6,6 +6,8 @@ import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
 import edu.njit.cs684.electronichealthrecords.services.DoctorService;
 import edu.njit.cs684.electronichealthrecords.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +34,7 @@ public class DoctorRestController {
 
     @GetMapping(value = "/medical/history/{patientId}")
     public MedicalHistory viewPatientMedicalHistory(@PathVariable @Validated String patientId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MedicalHistory patientHistory = patientService.viewPatientMedicalHistory(patientId);
         return patientHistory;
     }
