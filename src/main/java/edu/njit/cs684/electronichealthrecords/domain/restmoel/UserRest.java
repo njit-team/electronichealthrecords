@@ -5,8 +5,8 @@
 package edu.njit.cs684.electronichealthrecords.domain.restmoel;
 
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Account;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.AppUser;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.Role;
-import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.User;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -37,14 +37,14 @@ public class UserRest {
         this.roles = roles;
     }
 
-    public static UserRest userToUserRest(User user) {
+    public static UserRest userToUserRest(AppUser appUser) {
         UserRest userRest = new UserRest();
         userRest.setPassword("*********");
-        userRest.setUsername(user.getUsername());
-        userRest.setAccount(user.getAccount());
-        userRest.setUserType(user.getUserType());
+        userRest.setUsername(appUser.getUsername());
+        userRest.setAccount(appUser.getAccount());
+        userRest.setUserType(appUser.getUserType());
         List<String> roles = new ArrayList<>();
-        for (Role r : user.getRoles()) {
+        for (Role r : appUser.getRoles()) {
             String role = r.getRole().substring(r.getRole().indexOf("ROLE_"));
             roles.add(role);
         }
@@ -78,28 +78,28 @@ public class UserRest {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "AppUser{" +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
                 '}';
     }
 
-    public User userRestToUser() {
+    public AppUser userRestToUser() {
 
-        User user = new User();
-        user.setPassword(this.password);
-        user.setUsername(this.username);
-        user.setAccount(this.account);
-        user.setUserType(this.userType);
+        AppUser appUser = new AppUser();
+        appUser.setPassword(this.password);
+        appUser.setUsername(this.username);
+        appUser.setAccount(this.account);
+        appUser.setUserType(this.userType);
         List<Role> roles = new ArrayList<>();
         for (String r : this.roles) {
             Role role = new Role();
             role.setRole(r);
             roles.add(role);
         }
-        user.setRoles(roles);
-        return user;
+        appUser.setRoles(roles);
+        return appUser;
     }
 
     public String getUserType() {
