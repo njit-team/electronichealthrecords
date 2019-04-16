@@ -33,7 +33,7 @@ public class HospitalRestController {
     public Hospital createHospital(@RequestBody @Validated Hospital hospital) {
         Hospital existingHospital = this.hospitalRepository.findByEmailIgnoreCase(hospital.getEmail());
         if(existingHospital != null){
-            System.out.println("User Already exists");
+            System.out.println("AppUser Already exists");
         }
         Hospital newHospital =  this.hospitalservice.createNewHospital(hospital);
 

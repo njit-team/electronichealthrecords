@@ -1,7 +1,10 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
 import edu.njit.cs684.electronichealthrecords.repository.PatientRepository;
 import edu.njit.cs684.electronichealthrecords.testusers.MockDoctorRole;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,28 @@ public class DoctorServiceTest {
     @Test
     @MockDoctorRole
     public void prescribeDrugs() {
+        Patient patient = new Patient();
+        Prescription prescription = new Prescription();
+
+        String expectedPatientId = "PNT45";
+        String expectedMedicineName = "Metformin";
+        String expectedDosage = "twice daily";
+        String expectedAdditonalComments = "normal";
+
+        prescription.setMedicineName(expectedMedicineName);
+        prescription.setDosage(expectedDosage);
+        prescription.setAdditionalComments(expectedAdditonalComments);
+
+        patient.setPatientId(expectedPatientId);
+
+        doctorService.prescribeDrugs(expectedPatientId, prescription);
+
+        Assert.assertEquals("drug prescription failed", expectedPatientId, patient.getPatientId());
+        Assert.assertEquals("medicine name drug prescription method failed", expectedMedicineName, prescription.getMedicineName());
+        Assert.assertEquals("dosage of drug prescription method failed", expectedDosage, prescription.getDosage());
+        Assert.assertEquals("comments on drug prescription method failed", expectedAdditonalComments, prescription.getAdditionalComments());
+
+
 
     }
 
