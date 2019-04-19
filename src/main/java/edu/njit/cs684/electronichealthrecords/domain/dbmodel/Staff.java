@@ -14,7 +14,6 @@ public class Staff {
     @Id
     private String id;
     @Indexed(unique = true)
-    @NotNull(message = "StaffId is not sent in request")
     private String staffId;
     @NotNull(message = "StaffType is not sent in request")
     private String staffType;

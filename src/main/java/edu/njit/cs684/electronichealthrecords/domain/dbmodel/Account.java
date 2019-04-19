@@ -18,7 +18,7 @@ public class Account {
     private String dateOfBirth;
     @NotNull(message = "please enter your gender")
     private String gender;
-    @Indexed(unique = true)
+
     @Email
     @NotNull(message = "please enter your email")
     private String email;

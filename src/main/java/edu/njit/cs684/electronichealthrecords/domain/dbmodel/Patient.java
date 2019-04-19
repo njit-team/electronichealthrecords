@@ -16,7 +16,6 @@ public class Patient {
     @Id
     private String id;
     @Indexed(unique = true)
-    @NotNull(message = "Patient account not sent in request.")
     private String patientId;
     @NotNull(message = "Patient account not sent in request.")
     private Account account;

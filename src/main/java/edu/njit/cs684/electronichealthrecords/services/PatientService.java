@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class
@@ -25,8 +27,17 @@ PatientService {
         return returnedPatient;
     }
 
+    @SuppressWarnings("Duplicates")
     @Secured({"ROLE_DOCTOR", "ROLE_RECEPTIONIST"})
     public Patient createPatient(Patient patient){
+        int length = 5;
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "abcdefghijklmnopqrstuvwxyz"
+                + "0123456789";
+        String str = new Random().ints(length, 0, chars.length())
+                .mapToObj(i -> "" + chars.charAt(i))
+                .collect(Collectors.joining());
+        patient.setPatientId(str);
         Patient savedPatient = this.patientRepository.insert(patient);
         return savedPatient;
     }
@@ -40,7 +51,7 @@ PatientService {
 
     }
 
-    @Secured("ROLE_DOCTOR")
+    @Secured({"ROLE_DOCTOR","ROLE_RECEPTIONIST"})
     public Patient findPatientById(String patientId) {
         Patient patient;
         Optional<Patient> optionalPatient = patientRepository.findByPatientId(patientId);
