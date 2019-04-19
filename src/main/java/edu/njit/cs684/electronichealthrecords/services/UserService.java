@@ -50,4 +50,10 @@ public class UserService {
         appUser = optionalUser.orElse(null);
         return appUser;
     }
+
+    @Secured("ROLE_ANONYMOUS")
+    public Long countByUserType(String userType) {
+        Long numberOfUsers = applicationUserRepository.countByUserType(userType);
+        return numberOfUsers;
+    }
 }

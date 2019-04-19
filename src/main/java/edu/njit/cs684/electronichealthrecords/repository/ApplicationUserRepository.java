@@ -12,4 +12,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface ApplicationUserRepository extends MongoRepository<AppUser, String> {
     AppUser findByUsername(String userName);
+
+    Long countByUserType(String userType);
 }
