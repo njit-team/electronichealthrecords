@@ -27,5 +27,10 @@ public class StaffService {
         return returnedStaff;
     }
 
+    @Secured({"ROLE_DOCTOR", "ROLE_RECEPTIONIST", "ROLE_PATIENT", "ROLE_ANONYMOUS"})
+    public long countStaff(String staffType){
+        long numberOfUser = staffRepository.countByStaffType(staffType);
+        return numberOfUser;
+    }
 
 }

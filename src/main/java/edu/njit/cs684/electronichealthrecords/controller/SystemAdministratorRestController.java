@@ -61,5 +61,10 @@ public class SystemAdministratorRestController {
 
     }
 
+    @GetMapping(value = "/countStaff/{staffType}")
+    public long countStaff(@PathVariable String staffType){
+        Long numberOfUser = staffRepository.countByStaffType(staffType);
+        return numberOfUser;
+    }
 
 }
