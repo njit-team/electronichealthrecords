@@ -61,4 +61,9 @@ public class PatientRestController {
         return patientComments;
     }
 
+    @GetMapping(value = "/count")
+    public long countPatient(){
+        long numberOfPatients = patientService.countPatient();
+        return numberOfPatients;
+    }
 }

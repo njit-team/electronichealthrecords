@@ -24,7 +24,7 @@ public class Patient {
     private List<String> labTests = new ArrayList<>();
     private List<Prescription> prescription = new ArrayList<>();
     private List<String> additionalComments = new ArrayList<>();
-
+    private List<String> recordFiles = new ArrayList<>();
 
     public Patient()  {
     }
@@ -100,6 +100,14 @@ public class Patient {
 
     public void addPrescription(Prescription prescription1) {
         prescription.add(prescription1);
+    }
+
+    public List<String> getRecordFiles() {
+        return recordFiles;
+    }
+
+    public void setRecordFiles(List<String> recordFiles) {
+        this.recordFiles = recordFiles;
     }
 }
 
