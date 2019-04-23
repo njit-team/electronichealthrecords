@@ -30,6 +30,9 @@ public class Staff {
         this.account = account;
     }
 
+    public Staff() {
+    }
+
     public Staff(String staffId, String staffType) {
         this.staffId = staffId;
         this.staffType = staffType;
