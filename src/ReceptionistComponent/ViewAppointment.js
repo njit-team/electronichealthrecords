@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import axios from 'axios';
 import ReceptionistNav from './ReceptionistNav'
-import ReceptionistSideNav from './ReceptionistSideNav'
 import IndividualAppointmentModal from './IndividualAppointmentModal'
 import PatientDetailsComponent from './PatientDetailsComponent'
 import M from "materialize-css";
@@ -92,7 +91,6 @@ class ViewAppointment extends Component{
       return(
         <div className="">
          <ReceptionistNav handlekeyPress={this.handlekeyPress.bind(this)}/>
-          <ReceptionistSideNav/>  
             <table >
               <thead>
                 <tr>

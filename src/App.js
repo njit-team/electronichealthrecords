@@ -4,7 +4,6 @@ import AdminNav from './AdminComponent/AdminNav'
 import AdminHome from './AdminComponent/AdminHome'
 import AddStaff    from  './AdminComponent/AddStaff';
 import AdminFooter from  './AdminComponent/AdminFooter';
-import SideNav   from  './AdminComponent/SideNav';
 import Receptionist from './ReceptionistComponent/Receptionist'
 import ViewStaff from './AdminComponent/ViewStaff'
 import ViewAppointment from './ReceptionistComponent/ViewAppointment'
@@ -30,8 +29,8 @@ class App extends Component {
     <header>
      
     <Switch>
-    <Route exact path = "/" component = {AddStaff}/>
-    <Route exact path = "/admin" component = {AdminHome}/>
+    <Route exact path = "/add_staff" component = {AddStaff}/>
+    <Route exact path = "/" component = {AdminHome}/>
     <Route path = "/view_staff" component = {ViewStaff} />
     <Route path = "/view_patient" component = {ViewPatient} />
     <Route path = "/receptionist" component = {Receptionist} />

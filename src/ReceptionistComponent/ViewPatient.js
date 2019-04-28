@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReceptionistNav from './ReceptionistNav'
-import ReceptionistSideNav from './ReceptionistSideNav'
 import PatientDetailsComponent from './PatientDetailsComponent'
 import axios from 'axios';
 
@@ -73,7 +72,6 @@ class ViewPatient extends Component{
       return(
     <div className="">
      <ReceptionistNav handlekeyPress={this.handlekeyPress.bind(this)}/>
-     <ReceptionistSideNav/>
     <table>
         <thead>
           <tr>

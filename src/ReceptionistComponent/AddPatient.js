@@ -3,7 +3,6 @@ import { BrowserRouter, Route,Switch } from 'react-router-dom'
 import M from "materialize-css";
 import ReceptionistNav from './ReceptionistNav'
 import ViewAppointment from './ViewAppointment'
-import ReceptionistSideNav from './ReceptionistSideNav'
 import PatientDetailsComponent from './PatientDetailsComponent'
 import InputField from '../InputField'
 import axios from 'axios';
@@ -152,7 +151,6 @@ class AddPatient extends Component{
 
     <div className="">
      <ReceptionistNav handlekeyPress={this.handlekeyPress.bind(this)}/>
-     <ReceptionistSideNav/>
           <form className="def-form long-dist-form clearfix" onSubmit={this.handleSubmit}>
        <div className="row">
        {successful}

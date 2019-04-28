@@ -3,7 +3,6 @@ import { BrowserRouter, Route,Switch } from 'react-router-dom'
 import M from "materialize-css";
 import ReceptionistNav from './ReceptionistNav'
 import ViewAppointment from './ViewAppointment'
-import ReceptionistSideNav from './ReceptionistSideNav'
 import InputField from '../InputField'
 import PatientDetailsComponent from './PatientDetailsComponent'
 import axios from 'axios';
@@ -133,7 +132,7 @@ class Receptionist extends Component {
      <body>      
     <header>
      <ReceptionistNav  handlekeyPress={this.handlekeyPress.bind(this)}/>
-    <ReceptionistSideNav />
+ 
 
         <Switch>
    

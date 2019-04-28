@@ -1,49 +1,54 @@
 import React, {Component} from 'react'
 import M from "materialize-css";
+import { BrowserRouter, Route, Switch,Redirect } from 'react-router-dom'
 
 class AdminNav extends Component {
-  componentDidMount() {
-      let dropdowns = document.querySelectorAll('.dropdown-trigger');
-
-      var elems = document.querySelectorAll('.sidenav');
-      
-      var collapsibleElem = document.querySelector('.collapsible');
-     M.Collapsible.init(collapsibleElem, options);
-
-    
-     let options = {
-        inDuration: 300,
-        outDuration: 300,
-        hover: true, 
-        coverTrigger: false 
+  state ={
+    logout:false
+  }
+  onLogout(){
+       localStorage.removeItem("token")
+      this.setState({   
+         logout: "logout"
+      })
     }
-    
-     let option = {
-        inDuration: 250,
-        outDuration: 250,
-        edge: "left",
-        onOpenStart:null
-        
-    }
-    
-    M.Dropdown.init(dropdowns, options);
-     M.Sidenav.init(elems, option);
 
-    }
     
   render(){
     return(
 
       
       <nav className = "top-bar">
-      <div class="nav-wrapper">
+      <div class="container nav-wrapper">
+       
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><a href="sass.html">Add Staff</a></li>
-          <li><a href="badges.html">View Staff </a></li>
-          <li><a href="collapsible.html">Logout</a></li>
+        <li><a href="/">Home</a></li>
+              <li><a href="/add_staff">Add Staff</a></li>
+              <li><a href= "view_staff">View Staff</a></li>
+              <li onClick={this.onLogout.bind(this)}><a href= "">Logout</a></li>
+              {this.state.logout === "logout" ?  <Redirect to={{pathname: '/login'}} /> : null }
         </ul>
-      </div>
-    </nav>
+        <ul className= "right">
+              
+            <li>
+              <nav>
+            <div className="nav-wrapper">
+            <form>
+              <div className="input-field top-bar">
+                <input id="search" type="search" placeholder = "Search Patient"  required/>
+                <label className="label-icon" for="search"><i className="material-icons">search</i></label>
+                <i className="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+        </nav>
+        </li>
+     
+   
+        </ul>
+  </div>
+  </nav>
+  
 
 
 

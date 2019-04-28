@@ -3,7 +3,7 @@ import M from "materialize-css";
 import axios from 'axios';
 import InputField from '../InputField'
 import AdminNav from './AdminNav'
-import SideNav from './SideNav'
+
 class AddStaff extends Component{
     state = { 
       error: [ ], 
@@ -111,7 +111,7 @@ class AddStaff extends Component{
 
     <div className="">
     <AdminNav/>
-     <SideNav/>
+     
        <form className="def-form long-dist-form clearfix" onSubmit={this.handleSubmit}>
        <div className="row">
        {successful}

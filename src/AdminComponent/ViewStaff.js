@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import AdminNav from './AdminNav'
-import SideNav from './SideNav'
+
 import axios from 'axios';
 
 
@@ -40,7 +40,6 @@ class ViewStaff extends Component{
       return(
     <div className="">
      <AdminNav/>
-     <SideNav/>
     <table>
         <thead>
           <tr>
