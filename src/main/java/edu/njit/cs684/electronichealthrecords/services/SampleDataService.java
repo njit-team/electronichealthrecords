@@ -17,7 +17,10 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.lang.model.element.NestingKind;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -38,6 +41,13 @@ public class SampleDataService {
 
     Random random = new Random();
     List<String> staffTypes = List.of("DOCTOR", "LAB_TECHNICIAN", "RECEPTIONIST");
+    Map<String, Role> roleMap = new HashMap<>();
+
+    {
+        roleMap.put(staffTypes.get(0), new Role(staffTypes.get(0)));
+        roleMap.put(staffTypes.get(1), new Role(staffTypes.get(1)));
+        roleMap.put(staffTypes.get(2), new Role(staffTypes.get(2)));
+    }
 
     public Iterable<SampleData> getAllSampleData() {
         Iterable<SampleData> all = sampleDataRepository.findAll();
@@ -107,7 +117,12 @@ public class SampleDataService {
         AppUser appUser = new AppUser();
         appUser.setId(staff.getStaffId());
         appUser.setAccount(staff.getAccount());
-        appUser.setRoles(List.of(new Role(staff.getStaffType())));
+        if(staff.getStaffType().equalsIgnoreCase(roleMap.get("DOCTOR").getRole())){
+            List<Role> roles = List.copyOf(roleMap.values());
+            appUser.setRoles(roles);
+        }else {
+            appUser.setRoles(List.of(roleMap.get(staff.getStaffType())));
+        }
         appUser.setUsername(staff.getAccount().getEmail());
         appUser.setUserType(staff.getStaffType());
         appUser.setPassword(testPassword);
