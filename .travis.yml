@@ -1,10 +1,15 @@
 language: java
 jdk:
   - openjdk11
+addons:
+  sonarcloud:
+    organization: "njit-team" # the key of the org you chose at step #3
 services:
   - mongodb
 script:
   - "./mvnw install -DskipTests=false -Dmaven.javadoc.skip=true -B -V"
+#  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+
 notifications:
   slack:
     secure: nrPzfXpnGFEQm5JC+vaI+hpO/ViyfAvfS3BPpB18J63H4koQxLFZKBH2TKi6SzgR2cldl9X8HMc/raM2f2Yv5DqMRME5WwoKkp+nJ1MOwNElJSFb5AWtGqpSuvTQudtX/ghcHFAYL40iLX27O8AXYOV8lZowCKMhrBDeZ8e5KeVMeYGOicI6twNs/m/tpACCWE4veqy8IZQNqcZs+kemNdeDH4vO2lDJrA6g/l5Ixuljxx6bFqbVhJxBfQk8Dh9TrUc50faaDkAL2kepVW+fEKMQx3XW4qI1kYMyykQyBVj2mSlGQ1WUALeeEPx5HxhUQJ0q7j5On6XbA0zaqCPoTYwYoFvz73S8cYwYfyQyNqbTbXoiFLOOBAXeKpUdbSljEncoGy5x0JOgXI4OABihRTU9do2kmEFBOZPXyRGZ0+DY1QL7IwauwbkUwm8IOXSMExC/tvqcguBbtsfRqoJKVzNGwHCZGRPAGA28tpTIm1ND47QZiMRuIFAOQAakLXIDSfivYLUL6IljNOfCD5a3AuHjCBbel1raB+xSPRimpLSHALvaQZfpE0a1V7d8cw1veRIoxG95ne+H+r0dRMU2fRb3KBaV7dXBAv6aNgkwMavizTONQzrcmlCTYdCxInp+U5hRV0eCu6xQjQJR4bGb/koEGm7L3AhUArH7a2Ok7bg=
