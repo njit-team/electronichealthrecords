@@ -19,6 +19,9 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -39,6 +42,8 @@ public class ElectronichealthrecordsApplication {
 
     @PostConstruct
     public void init() {
+//        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        ExecutorService executorService = Executors.newWorkStealingPool();
         Iterable<SampleData> allSampleData = sampleDataService.getAllSampleData();
         List<SampleData> sampleDataList = new ArrayList<>();
         allSampleData.forEach(sampleDataList::add);
@@ -46,17 +51,18 @@ public class ElectronichealthrecordsApplication {
             SampleData sampleData = sampleDataList.get(i);
             if ((i < sampleDataList.size()/2) && !staffRepository.existsByAccountEmail(String.valueOf(sampleData.getEmail()))) {
                 Staff staff = sampleDataService.convertSampleDataToStaff(sampleData);
-                staffRepository.save(staff);
+                executorService.submit(() -> staffRepository.save(staff));
                 AppUser appUser = sampleDataService.staffToUser(staff);
-                userService.signUp(appUser);
+                executorService.submit(() -> userService.signUp(appUser));
             }
 
             if ((i >= sampleDataList.size()/2) && !patientRepository.existsByAccountEmail(String.valueOf(sampleData.getEmail()))) {
                 Patient patient = sampleDataService.convertSampleDataToPatient(sampleData);
                 patientRepository.save(patient);
                 AppUser appUser = sampleDataService.patientToUser(patient);
-                userService.signUp(appUser);
+                executorService.submit(() -> userService.signUp(appUser));
             }
         }
+        executorService.shutdown();
     }
 }
