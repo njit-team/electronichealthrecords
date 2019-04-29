@@ -19,6 +19,10 @@ public class Name {
         this.lastName = lastName;
         this.middleName = middleName;
     }
+    public Name(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public String getFirstName() {
         return firstName;
