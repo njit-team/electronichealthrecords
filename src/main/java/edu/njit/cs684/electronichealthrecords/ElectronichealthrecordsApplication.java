@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -41,7 +42,8 @@ public class ElectronichealthrecordsApplication {
 
     @PostConstruct
     public void init() {
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
+//        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        ExecutorService executorService = Executors.newWorkStealingPool();
         Iterable<SampleData> allSampleData = sampleDataService.getAllSampleData();
         List<SampleData> sampleDataList = new ArrayList<>();
         allSampleData.forEach(sampleDataList::add);
@@ -61,5 +63,6 @@ public class ElectronichealthrecordsApplication {
                 executorService.submit(() -> userService.signUp(appUser));
             }
         }
+        executorService.shutdown();
     }
 }
