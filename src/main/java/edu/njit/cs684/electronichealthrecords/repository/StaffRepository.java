@@ -11,4 +11,8 @@ import java.util.List;
 public interface StaffRepository extends MongoRepository<Staff, String> {
     List<Staff> findAll();
 
+    Long countByStaffType(String staffType);
+
+    boolean existsByAccountEmail(String s);
+
 }

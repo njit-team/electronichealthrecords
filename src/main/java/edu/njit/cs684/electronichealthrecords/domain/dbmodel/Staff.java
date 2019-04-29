@@ -19,6 +19,20 @@ public class Staff {
     @NotNull(message = "StaffType is not sent in request")
     private String staffType;
 
+    @NotNull(message = "staff account is not sent in request")
+    private Account account;
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Staff() {
+    }
+
     public Staff(String staffId, String staffType) {
         this.staffId = staffId;
         this.staffType = staffType;

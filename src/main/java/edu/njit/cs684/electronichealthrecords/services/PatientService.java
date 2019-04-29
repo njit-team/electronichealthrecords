@@ -13,11 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class
-PatientService {
+public class PatientService {
+
+    private PatientRepository patientRepository;
 
     @Autowired
-    PatientRepository patientRepository;
+    public PatientService(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
 
     @Secured({"ROLE_DOCTOR", "ROLE_RECEPTIONIST", "ROLE_PATIENT"})
     public List<Patient> getPatientInfo(){
@@ -80,4 +83,21 @@ PatientService {
         patient = optionalPatient.orElse(null);
         return patient.getAdditionalComments();
     }
+
+    public PatientRepository getPatientRepository() {
+        return patientRepository;
+    }
+
+    @Autowired
+    public void setPatientRepository(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
+
+    @Secured({"ROLE_DOCTOR", "ROLE_RECEPTIONIST", "ROLE_PATIENT", "ROLE_ANONYMOUS"})
+    public long countPatient(){
+
+        long numberOfPatients = patientRepository.count();
+        return numberOfPatients;
+    }
+
 }

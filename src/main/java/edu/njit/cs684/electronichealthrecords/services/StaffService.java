@@ -14,18 +14,23 @@ public class StaffService {
     @Autowired
     StaffRepository staffRepository;
 
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ANONYMOUS"})
     public Staff createStaff(Staff staff) {
 
         Staff savedStaff = this.staffRepository.insert(staff);
         return savedStaff;
     }
 
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ANONYMOUS"})
     public List<Staff> getStaffInfo() {
         List<Staff> returnedStaff = this.staffRepository.findAll();
         return returnedStaff;
     }
 
+    @Secured({"ROLE_DOCTOR", "ROLE_RECEPTIONIST", "ROLE_PATIENT", "ROLE_ANONYMOUS"})
+    public long countStaff(String staffType){
+        long numberOfUser = staffRepository.countByStaffType(staffType);
+        return numberOfUser;
+    }
 
 }

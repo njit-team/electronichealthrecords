@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 public class PatientServiceTest {
@@ -64,5 +66,15 @@ public class PatientServiceTest {
 
     @Test
     public void findPatientById() {
+    }
+
+    @Test
+    @MockDoctorRole
+    public void countPatient() {
+
+        List<String> staffTypes = List.of("doctor", "lab_technician", "receptionist");
+
+        Long patientCountResult = patientRepository.count();
+        Assert.assertEquals("Patient count failed", Long.valueOf(1000), patientCountResult);
     }
 }

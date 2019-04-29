@@ -45,4 +45,10 @@ public class UserController {
         AppUser deletedAppUser = userService.deleteUser(username);
         return UserRest.userToUserRest(deletedAppUser);
     }
+
+    @GetMapping(value = "/countuser/{userType}")
+    public Long countByUserType(@PathVariable String userType) {
+        Long numberOfUsers = userService.countByUserType(userType);
+        return numberOfUsers;
+    }
 }
