@@ -25,7 +25,7 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @Secured("ROLE_ANONYMOUS")
+//    @Secured("ROLE_ANONYMOUS")
     public AppUser signUp(AppUser appUser) {
         appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
         AppUser savedAppUser = applicationUserRepository.save(appUser);

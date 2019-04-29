@@ -14,6 +14,9 @@ public class Name {
     public String lastName;
     public String middleName;
 
+    public Name() {
+    }
+
     public Name(String firstName, String lastName, String middleName) {
         this.firstName = firstName;
         this.lastName = lastName;

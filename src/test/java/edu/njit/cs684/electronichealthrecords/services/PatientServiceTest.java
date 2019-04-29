@@ -45,20 +45,8 @@ public class PatientServiceTest {
     @Test
     @MockDoctorRole
     public void findPatientByEmail() {
-        Patient patient = new Patient();
-        String expectedPatientId = "TON420";
-        patient.setId(expectedPatientId);
-        patient.getId();
-        Account account = new Account();
-        String expectedPatientemail = "123@njit.edu";
-        account.setEmail(expectedPatientemail);
-        patient.setAccount(account);
-
-        if (patientRepository.existsById(expectedPatientId)) {
-            patientRepository.deleteById(expectedPatientId);
-        }
-
-        patientService.createPatient(patient);
+        String expectedPatientId = "2000";
+        String expectedPatientemail = "chauncey_motley@aol.com";
         Patient resultPatient = patientService.findPatientByEmail(expectedPatientemail);
         Assert.assertEquals("find patient by email method failed", expectedPatientId, resultPatient.getId());
 
