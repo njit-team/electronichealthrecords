@@ -3,14 +3,17 @@ package edu.njit.cs684.electronichealthrecords;
 import edu.njit.cs684.electronichealthrecords.domain.SampleData;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Staff;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.AppUser;
 import edu.njit.cs684.electronichealthrecords.repository.PatientRepository;
 import edu.njit.cs684.electronichealthrecords.repository.StaffRepository;
 import edu.njit.cs684.electronichealthrecords.services.SampleDataService;
+import edu.njit.cs684.electronichealthrecords.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -27,6 +30,8 @@ public class ElectronichealthrecordsApplication {
     PatientRepository patientRepository;
     @Autowired
     StaffRepository staffRepository;
+    @Autowired
+    UserService userService;
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ElectronichealthrecordsApplication.class, args);
@@ -42,11 +47,15 @@ public class ElectronichealthrecordsApplication {
             if ((i < sampleDataList.size()/2) && !staffRepository.existsByAccountEmail(String.valueOf(sampleData.getEmail()))) {
                 Staff staff = sampleDataService.convertSampleDataToStaff(sampleData);
                 staffRepository.save(staff);
+                AppUser appUser = sampleDataService.staffToUser(staff);
+                userService.signUp(appUser);
             }
 
-            if ((i > sampleDataList.size()/2) && !patientRepository.existsByAccountEmail(String.valueOf(sampleData.getEmail()))) {
+            if ((i >= sampleDataList.size()/2) && !patientRepository.existsByAccountEmail(String.valueOf(sampleData.getEmail()))) {
                 Patient patient = sampleDataService.convertSampleDataToPatient(sampleData);
                 patientRepository.save(patient);
+                AppUser appUser = sampleDataService.patientToUser(patient);
+                userService.signUp(appUser);
             }
         }
     }
