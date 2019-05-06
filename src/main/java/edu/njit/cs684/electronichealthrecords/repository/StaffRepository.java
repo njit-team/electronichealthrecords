@@ -15,4 +15,6 @@ public interface StaffRepository extends MongoRepository<Staff, String> {
 
     boolean existsByAccountEmail(String s);
 
+    Staff findByAccountEmail(String s);
+
 }

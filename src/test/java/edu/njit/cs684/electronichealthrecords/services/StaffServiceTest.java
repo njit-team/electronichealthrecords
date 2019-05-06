@@ -1,8 +1,12 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
+import edu.njit.cs684.electronichealthrecords.domain.SampleData;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Staff;
 import edu.njit.cs684.electronichealthrecords.repository.StaffRepository;
 import edu.njit.cs684.electronichealthrecords.testusers.MockDoctorRole;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +18,6 @@ import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@Ignore
 public class StaffServiceTest {
 
     @Autowired
@@ -23,11 +26,14 @@ public class StaffServiceTest {
     @Autowired
     private StaffRepository staffRepository;
 
+    @Autowired
+    SampleDataService sampleDataService;
+
     @Test
     @MockDoctorRole
     public void countStaff() {
 
-        List<String> staffTypes = List.of("doctor", "lab_technician", "receptionist");
+        List<String> staffTypes = List.of("DOCTOR", "LAB_TECHNICIAN", "RECEPTIONIST");
 
         Long doctorCountExpected = staffRepository.countByStaffType(staffTypes.get(0));
         Long labTechnicianCountExpected = staffRepository.countByStaffType(staffTypes.get(1));
@@ -36,4 +42,10 @@ public class StaffServiceTest {
         Assert.assertEquals("count staff method failed", 1000, totalCount);
     }
 
+    @Test
+    public void getStaffInfo() {
+        SampleData randomSampleData = sampleDataService.getRandomStaffSampleData();
+        Staff byAccountEmail = staffRepository.findByAccountEmail(randomSampleData.getEmail());
+        Assert.assertNotNull(byAccountEmail);
+    }
 }

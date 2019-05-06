@@ -41,7 +41,7 @@ public class ElectronichealthrecordsApplication {
     }
 
     @PostConstruct
-    public void init() {
+    public void init() throws InterruptedException {
 //        ExecutorService executorService = Executors.newFixedThreadPool(10);
         ExecutorService executorService = Executors.newWorkStealingPool();
         Iterable<SampleData> allSampleData = sampleDataService.getAllSampleData();
@@ -63,6 +63,7 @@ public class ElectronichealthrecordsApplication {
                 executorService.submit(() -> userService.signUp(appUser));
             }
         }
-        executorService.shutdown();
+//        executorService.awaitTermination(3, TimeUnit.MINUTES);
+//        executorService.shutdown();
     }
 }

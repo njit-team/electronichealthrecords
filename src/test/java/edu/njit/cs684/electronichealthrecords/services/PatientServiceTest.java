@@ -1,9 +1,11 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
+import edu.njit.cs684.electronichealthrecords.domain.SampleData;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Account;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
 import edu.njit.cs684.electronichealthrecords.repository.PatientRepository;
 import edu.njit.cs684.electronichealthrecords.testusers.MockDoctorRole;
+import edu.njit.cs684.electronichealthrecords.testusers.MockPatientRole;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,16 +27,22 @@ public class PatientServiceTest {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    SampleDataService sampleDataService;
+
     @Before
     public void setUp() throws Exception {
     }
 
     @After
     public void tearDown() throws Exception {
+
     }
 
     @Test
     public void getPatientInfo() {
+        Patient patientById = patientService.findPatientById("1001");
+        Assert.assertNotNull(patientById);
     }
 
     @Test
@@ -45,23 +53,26 @@ public class PatientServiceTest {
     @Test
     @MockDoctorRole
     public void findPatientByEmail() {
-        String expectedPatientId = "2000";
-        String expectedPatientemail = "chauncey_motley@aol.com";
-        Patient resultPatient = patientService.findPatientByEmail(expectedPatientemail);
-        Assert.assertEquals("find patient by email method failed", expectedPatientId, resultPatient.getId());
+        SampleData sampleData = sampleDataService.getRandomPatientSampleData();
+        Patient resultPatient = patientService.findPatientByEmail(sampleData.getEmail());
+        Assert.assertNotNull("find patient by email method failed", resultPatient.getId());
 
     }
 
     @Test
+    @MockDoctorRole
     public void findPatientById() {
+        SampleData sampleData = sampleDataService.getRandomPatientSampleData();
+        Patient patient = patientService.findPatientById(String.valueOf(sampleData.getId()));
+        Assert.assertNotNull("find patient by id method failed", patient);
+        Assert.assertEquals("find patient method failed", sampleData.getEmail(), patient.getAccount().getEmail());
+
     }
 
     @Test
     @MockDoctorRole
     public void countPatient() {
-
         List<String> staffTypes = List.of("doctor", "lab_technician", "receptionist");
-
         Long patientCountResult = patientRepository.count();
         Assert.assertEquals("Patient count failed", Long.valueOf(1000), patientCountResult);
     }

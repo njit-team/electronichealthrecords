@@ -3,19 +3,23 @@ package edu.njit.cs684.electronichealthrecords.services;
 import edu.njit.cs684.electronichealthrecords.domain.SampleData;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Account;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Address;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.MedicalHistory;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Name;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
+import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Staff;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.AppUser;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.security.Role;
 import edu.njit.cs684.electronichealthrecords.repository.SampleDataRepository;
 import edu.njit.cs684.electronichealthrecords.repository.StaffRepository;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.lang.model.element.NestingKind;
+import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,9 +48,9 @@ public class SampleDataService {
     Map<String, Role> roleMap = new HashMap<>();
 
     {
-        roleMap.put(staffTypes.get(0), new Role(staffTypes.get(0)));
-        roleMap.put(staffTypes.get(1), new Role(staffTypes.get(1)));
-        roleMap.put(staffTypes.get(2), new Role(staffTypes.get(2)));
+        roleMap.put(staffTypes.get(0), new Role("ROLE_" + staffTypes.get(0)));
+        roleMap.put(staffTypes.get(1), new Role("ROLE_" + staffTypes.get(1)));
+        roleMap.put(staffTypes.get(2), new Role("ROLE_" + staffTypes.get(2)));
     }
 
     public Iterable<SampleData> getAllSampleData() {
@@ -100,7 +104,31 @@ public class SampleDataService {
         patient.setAccount(account);
         patient.setPatientId(String.valueOf(sampleData.getId()));
         patient.setId(String.valueOf(sampleData.getId()));
+
+        patient.addcomments(generateRandomTextLine(6));
+        patient.setLabTests(List.of(generateRandomTextLine(3), generateRandomTextLine(2)));
+        Prescription prescription = getRandomPrescription();
+        patient.setPrescription(List.of(prescription));
+        MedicalHistory medicalHistory = getRandomMedicalHistory();
+        patient.setMedicalHistory(medicalHistory);
+
         return patient;
+    }
+
+    private Prescription getRandomPrescription() {
+        Prescription prescription = new Prescription();
+        prescription.setAdditionalComments(generateRandomTextLine(8));
+        prescription.setDosage(generateRandomTextLine(4));
+        prescription.setMedicineName(generateRandomTextLine(4));
+        prescription.setActive((generateRandomTextLine(3).length() % 2 == 0) ? true : false);
+        return prescription;
+    }
+
+    private MedicalHistory getRandomMedicalHistory() {
+        MedicalHistory medicalHistory = new MedicalHistory();
+        medicalHistory.setAdditionalComments(generateRandomTextLine(5));
+        medicalHistory.setRecord(generateRandomTextLine(7));
+        return medicalHistory;
     }
 
     public String generateDob() {
@@ -138,5 +166,31 @@ public class SampleDataService {
         appUser.setUserType(PATIENT_ROLE);
         appUser.setPassword(testPassword);
         return appUser;
+    }
+
+    public SampleData getRandomStaffSampleData(){
+        Iterable<SampleData> all = sampleDataRepository.findAll();
+        List<SampleData> sampleData = new ArrayList<>();
+        all.forEach(sampleData::add);
+        return sampleData.get(random.nextInt(1000));
+    }
+
+    public SampleData getRandomPatientSampleData(){
+        Iterable<SampleData> all = sampleDataRepository.findAll();
+        List<SampleData> sampleData = new ArrayList<>();
+        all.forEach(sampleData::add);
+        return sampleData.get(random.nextInt(1000) + 1000);
+    }
+
+    public String generateRandomTextLine(int wordCount){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i <= wordCount; i++) {
+            String randomWord = RandomStringUtils.randomAlphabetic(random.nextInt(5) + 2);
+            stringBuilder.append(randomWord);
+            stringBuilder.append(' ');
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        stringBuilder.append('.');
+        return stringBuilder.toString();
     }
 }

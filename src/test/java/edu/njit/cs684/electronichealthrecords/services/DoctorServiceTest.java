@@ -1,5 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
+import edu.njit.cs684.electronichealthrecords.domain.SampleData;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Patient;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Prescription;
 import edu.njit.cs684.electronichealthrecords.repository.PatientRepository;
@@ -20,6 +21,12 @@ public class DoctorServiceTest {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    PatientService patientService;
+
+    @Autowired
+    SampleDataService sampleDataService;
 
     @Test
     @MockDoctorRole
@@ -48,5 +55,23 @@ public class DoctorServiceTest {
 
 
     }
+
+    @Test
+    @MockDoctorRole
+    public void prescribeTests(){
+        SampleData sampleData = sampleDataService.getRandomPatientSampleData();
+        Patient patient = patientService.findPatientById(String.valueOf(sampleData.getId()));
+//        patient.setLabTests();
+
+    }
+
+    @Test
+    @MockDoctorRole
+    public void writeComments(){
+        SampleData sampleData = sampleDataService.getRandomPatientSampleData();
+        Patient patient = patientService.findPatientById(String.valueOf(sampleData.getId()));
+        patient.addcomments("");
+    }
+
 
 }
