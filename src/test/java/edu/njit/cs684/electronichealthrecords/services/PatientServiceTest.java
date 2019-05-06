@@ -40,6 +40,7 @@ public class PatientServiceTest {
     }
 
     @Test
+    @MockDoctorRole
     public void getPatientInfo() {
         Patient patientById = patientService.findPatientById("1001");
         Assert.assertNotNull(patientById);
