@@ -24,6 +24,8 @@ public class LabTest {
     public LabTest() {
     }
 
+
+
     public String getId() {
         return id;
     }

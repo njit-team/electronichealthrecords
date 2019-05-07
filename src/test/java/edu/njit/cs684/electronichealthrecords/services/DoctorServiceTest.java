@@ -73,5 +73,4 @@ public class DoctorServiceTest {
         patient.addcomments("");
     }
 
-
 }

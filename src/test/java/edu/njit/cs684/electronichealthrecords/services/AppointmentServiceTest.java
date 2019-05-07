@@ -1,5 +1,6 @@
 package edu.njit.cs684.electronichealthrecords.services;
 
+import edu.njit.cs684.electronichealthrecords.domain.SampleData;
 import edu.njit.cs684.electronichealthrecords.domain.dbmodel.Appointment;
 import edu.njit.cs684.electronichealthrecords.repository.AppointmentRepository;
 import edu.njit.cs684.electronichealthrecords.testusers.MockDoctorRole;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +24,9 @@ public class AppointmentServiceTest {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private SampleDataService sampleDataService;
 
     @Test
     @MockDoctorRole
@@ -60,7 +65,6 @@ public class AppointmentServiceTest {
         Assert.assertEquals("updateAppointment method failed", appointmentNewDatetime.toString(), resultUpdatedAppointment.getAppointmentDateTime());
 
         appointmentRepository.deleteById(patientId);
-
-
     }
+
 }
